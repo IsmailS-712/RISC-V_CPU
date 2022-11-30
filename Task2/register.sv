@@ -1,4 +1,4 @@
-module register #(
+module register (
     input logic             clk,
     input logic [4:0]       AD1,
     input logic [4:0]       AD2,
