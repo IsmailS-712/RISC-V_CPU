@@ -1,4 +1,4 @@
-module task2 #(
+module task2 (
     input logic             clk,
     input logic [4:0]       AD1,
     input logic [4:0]       AD2,
@@ -7,7 +7,6 @@ module task2 #(
     input logic [31:0]      ImmOp,
     input logic             ALUsrc,
     input logic             ALUctrl,
-    output logic            EQ,
     output logic [31:0]     a0 [4:0]
 );
 
@@ -39,7 +38,7 @@ ALU ALU1(
     .ALUop2(ALUop2),
     .ALUctrl(ALUctrl),
     .SUM(ALUout),
-    .EQ(EQ)
+    .EQ(EQ),
 )
 
 endmodule

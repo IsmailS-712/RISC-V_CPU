@@ -1,4 +1,4 @@
-module ALU_mux #(
+module ALU_mux (
     input logic         ALUsrc,
     input logic [31:0]  din0,
     input logic [31:0]  din1,

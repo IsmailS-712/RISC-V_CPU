@@ -1,4 +1,4 @@
-module pc #(
+module pc (
     input logic [31:0] ImmOp,
     input logic        clk,
     input logic        rst,
