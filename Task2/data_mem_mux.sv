@@ -18,9 +18,6 @@ always_ff @(posedge clk)
     end
 
 always_comb
-if (Resultsrc) 
-    assign Result=RD;
-else 
-    assign Result=A;
+    assign Result = Resultsrc ? RD : A;
 
 endmodule

@@ -11,8 +11,7 @@ module ALU (
 logic [31:0]      ALUop2;
 
 always_comb
-    if (ALUsrc) ALUop2=ImmOp;
-    else ALUop2=RegOp2;
+    assign ALUop2 = ALUsrc ? ImmOp : RegOp2;
 
 always_comb 
     case (ALUctrl) 
