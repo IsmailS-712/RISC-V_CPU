@@ -4,43 +4,8 @@ module cpu (
     output logic [31:0]     a0 [4:0]
 );
 
-//bus from pc.sv
+//pc.sv outputs
 logic [31:0] PC;
-
-//bus from instr_mem.sv
-logic [31:0] instr;
-logic [4:0] rs1;
-logic [4:0] rs2;
-logic [4:0] rd;
-logic [31:7] Imm;
-
-//bus from controlnew.sv
-logic       PCsrc;
-logic       Resultsrc;
-logic       MemWrite;
-logic [2:0] ALUctrl;
-logic       ALUsrc;
-logic       ImmSrc;
-logic       RegWrite;
-
-//bus from signextension.sv
-logic [31:0] ImmOp;
-
-//bus from register.sv
-logic [31:0] Regop1;
-logic [31:0] Regop2;
-
-//bus from ALU.sv
-logic [31:0] ALUout;
-logic       EQ;
-
-//bus from data_mem_mux.sv
-logic [31:0] Result;
-
-assign rs1 = instr[19:15];
-assign rs2 = instr[24:20];
-assign rd = instr[11:7];
-assign Imm = instr[31:7];
 
 pc pc(
     .ImmOp(ImmOp),
@@ -49,6 +14,29 @@ pc pc(
     .PCsrc(PCsrc),
     .PC_out(PC)
 );
+
+
+//instr_mem.sv outputs
+logic [31:0] instr;
+logic [4:0] rs1;
+logic [4:0] rs2;
+logic [4:0] rd;
+logic [31:7] Imm;
+
+instr_mem instr_mem(
+    .A(PC),
+    .RD(instr)
+);
+
+
+//controlnew.sv outputs
+logic       PCsrc;
+logic       Resultsrc;
+logic       MemWrite;
+logic [2:0] ALUctrl;
+logic       ALUsrc;
+logic       ImmSrc;
+logic       RegWrite;
 
 controlnew control(
     .instr(instr),
@@ -62,21 +50,20 @@ controlnew control(
     .RegWrite(RegWrite)
 );
 
+
+//signextension.sv outputs
+logic [31:0] ImmOp;
+
 Signextension signextend(
     .Imm(Imm),
     .Immsrc(ImmSrc),
     .ImmOp(ImmOp)
 );
 
-ALU ALU(
-    .ALUop1(Regop1),
-    .RegOp2(Regop2),
-    .ALUctrl(ALUctrl),
-    .ImmOp(ImmOp),
-    .ALUsrc(ALUsrc),
-    .ALUout(ALUout),
-    .EQ(EQ)
-);
+
+//register.sv outputs
+logic [31:0] Regop1;
+logic [31:0] Regop2;
 
 register register(
     .clk(clk),
@@ -90,6 +77,25 @@ register register(
     .a0(a0)
 );
 
+
+//ALU.sv outputs
+logic [31:0] ALUout;
+logic       EQ;
+
+ALU ALU(
+    .ALUop1(Regop1),
+    .RegOp2(Regop2),
+    .ALUctrl(ALUctrl),
+    .ImmOp(ImmOp),
+    .ALUsrc(ALUsrc),
+    .ALUout(ALUout),
+    .EQ(EQ)
+);
+
+
+//data_mem_mux.sv outputs
+logic [31:0] Result;
+
 data_mem_mux data_mem(
     .clk(clk),
     .A(ALUout),
@@ -98,5 +104,12 @@ data_mem_mux data_mem(
     .Resultsrc(Resultsrc),
     .Result(Result)
 );
+
+
+//instruction bus outputs
+assign rs1 = instr[19:15];
+assign rs2 = instr[24:20];
+assign rd = instr[11:7];
+assign Imm = instr[31:7];
 
 endmodule
