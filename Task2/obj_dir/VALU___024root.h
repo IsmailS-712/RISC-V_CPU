@@ -14,11 +14,13 @@ class VALU___024root final : public VerilatedModule {
 
     // DESIGN SPECIFIC STATE
     VL_IN8(ALUctrl,2,0);
+    VL_IN8(ALUsrc,0,0);
     VL_OUT8(EQ,0,0);
-    VL_IN8(__pinNumber6,0,0);
     VL_IN(ALUop1,31,0);
-    VL_IN(ALUop2,31,0);
+    VL_IN(RegOp2,31,0);
+    VL_IN(ImmOp,31,0);
     VL_OUT(ALUout,31,0);
+    IData/*31:0*/ ALU__DOT__ALUop2;
 
     // INTERNAL VARIABLES
     VALU__Syms* const vlSymsp;

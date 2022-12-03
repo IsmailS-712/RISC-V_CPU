@@ -14,13 +14,13 @@ logic [31:0] reg_array [4:0];
 
 always_ff @(posedge clk) begin
     if (WE3 == 1'b1)
-        reg_array[AD3] <= WD3;
+        reg_array[AD3] = WD3;x
 end
 
 always_comb begin
-    RD1 <= reg_array[AD1];
-    RD2 <= reg_array[AD2];
-    a0 <= reg_array;
+    RD1 = reg_array[AD1];
+    RD2 = reg_array[AD2];
+    a0 = reg_array;
 end
 
 endmodule

@@ -12,10 +12,11 @@ VALU::VALU(VerilatedContext* _vcontextp__, const char* _vcname__)
     : VerilatedModel{*_vcontextp__}
     , vlSymsp{new VALU__Syms(contextp(), _vcname__, this)}
     , ALUctrl{vlSymsp->TOP.ALUctrl}
+    , ALUsrc{vlSymsp->TOP.ALUsrc}
     , EQ{vlSymsp->TOP.EQ}
-    , __pinNumber6{vlSymsp->TOP.__pinNumber6}
     , ALUop1{vlSymsp->TOP.ALUop1}
-    , ALUop2{vlSymsp->TOP.ALUop2}
+    , RegOp2{vlSymsp->TOP.RegOp2}
+    , ImmOp{vlSymsp->TOP.ImmOp}
     , ALUout{vlSymsp->TOP.ALUout}
     , rootp{&(vlSymsp->TOP)}
 {

@@ -34,9 +34,11 @@ VL_ATTR_COLD void VALU___024root___ctor_var_reset(VALU___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    VALU___024root___ctor_var_reset\n"); );
     // Body
     vlSelf->ALUop1 = VL_RAND_RESET_I(32);
-    vlSelf->ALUop2 = VL_RAND_RESET_I(32);
+    vlSelf->RegOp2 = VL_RAND_RESET_I(32);
     vlSelf->ALUctrl = VL_RAND_RESET_I(3);
+    vlSelf->ALUsrc = VL_RAND_RESET_I(1);
+    vlSelf->ImmOp = VL_RAND_RESET_I(32);
     vlSelf->ALUout = VL_RAND_RESET_I(32);
     vlSelf->EQ = VL_RAND_RESET_I(1);
-    vlSelf->__pinNumber6 = VL_RAND_RESET_I(1);
+    vlSelf->ALU__DOT__ALUop2 = VL_RAND_RESET_I(32);
 }

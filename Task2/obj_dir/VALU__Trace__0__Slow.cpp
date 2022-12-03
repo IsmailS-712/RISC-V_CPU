@@ -12,16 +12,21 @@ VL_ATTR_COLD void VALU___024root__trace_init_sub__TOP__0(VALU___024root* vlSelf,
     const int c = vlSymsp->__Vm_baseCode;
     // Body
     tracep->declBus(c+1,"ALUop1", false,-1, 31,0);
-    tracep->declBus(c+2,"ALUop2", false,-1, 31,0);
+    tracep->declBus(c+2,"RegOp2", false,-1, 31,0);
     tracep->declBus(c+3,"ALUctrl", false,-1, 2,0);
-    tracep->declBus(c+4,"ALUout", false,-1, 31,0);
-    tracep->declBit(c+5,"EQ", false,-1);
+    tracep->declBit(c+4,"ALUsrc", false,-1);
+    tracep->declBus(c+5,"ImmOp", false,-1, 31,0);
+    tracep->declBus(c+6,"ALUout", false,-1, 31,0);
+    tracep->declBit(c+7,"EQ", false,-1);
     tracep->pushNamePrefix("ALU ");
     tracep->declBus(c+1,"ALUop1", false,-1, 31,0);
-    tracep->declBus(c+2,"ALUop2", false,-1, 31,0);
+    tracep->declBus(c+2,"RegOp2", false,-1, 31,0);
     tracep->declBus(c+3,"ALUctrl", false,-1, 2,0);
-    tracep->declBus(c+4,"ALUout", false,-1, 31,0);
-    tracep->declBit(c+5,"EQ", false,-1);
+    tracep->declBit(c+4,"ALUsrc", false,-1);
+    tracep->declBus(c+5,"ImmOp", false,-1, 31,0);
+    tracep->declBus(c+6,"ALUout", false,-1, 31,0);
+    tracep->declBit(c+7,"EQ", false,-1);
+    tracep->declBus(c+8,"ALUop2", false,-1, 31,0);
     tracep->popNamePrefix(1);
 }
 
@@ -66,8 +71,11 @@ VL_ATTR_COLD void VALU___024root__trace_full_sub_0(VALU___024root* vlSelf, Veril
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode);
     // Body
     bufp->fullIData(oldp+1,(vlSelf->ALUop1),32);
-    bufp->fullIData(oldp+2,(vlSelf->ALUop2),32);
+    bufp->fullIData(oldp+2,(vlSelf->RegOp2),32);
     bufp->fullCData(oldp+3,(vlSelf->ALUctrl),3);
-    bufp->fullIData(oldp+4,(vlSelf->ALUout),32);
-    bufp->fullBit(oldp+5,(vlSelf->EQ));
+    bufp->fullBit(oldp+4,(vlSelf->ALUsrc));
+    bufp->fullIData(oldp+5,(vlSelf->ImmOp),32);
+    bufp->fullIData(oldp+6,(vlSelf->ALUout),32);
+    bufp->fullBit(oldp+7,(vlSelf->EQ));
+    bufp->fullIData(oldp+8,(vlSelf->ALU__DOT__ALUop2),32);
 }
