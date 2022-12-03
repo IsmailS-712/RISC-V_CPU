@@ -25,7 +25,7 @@ always_comb begin
                 3'b111:
                     ALUctrl = 3'b010;
                 3'b000:
-                    if(Func5 = 1 & op5 = 1)
+                    if(Func5 == 1 & op5 == 1)
                         ALUctrl = 3'b001;
                     else
                         ALUctrl = 3'b000;
