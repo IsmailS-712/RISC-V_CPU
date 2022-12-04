@@ -8,13 +8,13 @@ module Signextension(
 always_comb begin
     case(Immsrc) 
         2'b00:
-            Immop = {{20{Imm[31]}},Imm[31:20]};
+            ImmOp = {{20{Imm[31]}},Imm[31:20]};
         2'b01:
-            Immop = {{20{Imm[31]}},Imm[31:25],Imm[11:7]};
+            ImmOp = {{20{Imm[31]}},Imm[31:25],Imm[11:7]};
         2'b10:
-            Immop = {{20{Imm[31]}},Imm[7],Imm[30:25],Imm[11:8],1'b0};
+            ImmOp = {{20{Imm[31]}},Imm[7],Imm[30:25],Imm[11:8],1'b0};
         2'b11:
-            Immop = {{12{Imm[31]}},Imm[19:12],Imm[20],Imm[30:21]};
+            ImmOp = {{13{Imm[31]}},Imm[19:12],Imm[20],Imm[30:21]};
     endcase
 end
 endmodule
