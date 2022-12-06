@@ -1,16 +1,16 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table implementation internals
 
-#include "Vpc__Syms.h"
-#include "Vpc.h"
-#include "Vpc___024root.h"
+#include "Vcontrol__Syms.h"
+#include "Vcontrol.h"
+#include "Vcontrol___024root.h"
 
 // FUNCTIONS
-Vpc__Syms::~Vpc__Syms()
+Vcontrol__Syms::~Vcontrol__Syms()
 {
 }
 
-Vpc__Syms::Vpc__Syms(VerilatedContext* contextp, const char* namep, Vpc* modelp)
+Vcontrol__Syms::Vcontrol__Syms(VerilatedContext* contextp, const char* namep, Vcontrol* modelp)
     : VerilatedSyms{contextp}
     // Setup internal state of the Syms class
     , __Vm_modelp{modelp}

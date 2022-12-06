@@ -4,33 +4,33 @@
 // Internal details; most calling programs do not need this header,
 // unless using verilator public meta comments.
 
-#ifndef VERILATED_VPC__SYMS_H_
-#define VERILATED_VPC__SYMS_H_  // guard
+#ifndef VERILATED_VCONTROL__SYMS_H_
+#define VERILATED_VCONTROL__SYMS_H_  // guard
 
 #include "verilated.h"
 
 // INCLUDE MODEL CLASS
 
-#include "Vpc.h"
+#include "Vcontrol.h"
 
 // INCLUDE MODULE CLASSES
-#include "Vpc___024root.h"
+#include "Vcontrol___024root.h"
 
 // SYMS CLASS (contains all model state)
-class Vpc__Syms final : public VerilatedSyms {
+class Vcontrol__Syms final : public VerilatedSyms {
   public:
     // INTERNAL STATE
-    Vpc* const __Vm_modelp;
+    Vcontrol* const __Vm_modelp;
     bool __Vm_activity = false;  ///< Used by trace routines to determine change occurred
     uint32_t __Vm_baseCode = 0;  ///< Used by trace routines when tracing multiple models
     bool __Vm_didInit = false;
 
     // MODULE INSTANCE STATE
-    Vpc___024root                  TOP;
+    Vcontrol___024root             TOP;
 
     // CONSTRUCTORS
-    Vpc__Syms(VerilatedContext* contextp, const char* namep, Vpc* modelp);
-    ~Vpc__Syms();
+    Vcontrol__Syms(VerilatedContext* contextp, const char* namep, Vcontrol* modelp);
+    ~Vcontrol__Syms();
 
     // METHODS
     const char* name() { return TOP.name(); }

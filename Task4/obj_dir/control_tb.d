@@ -1,4 +1,4 @@
-pc_tb.o: ../pc_tb.cpp \
+control_tb.o: ../control_tb.cpp \
  /usr/local/share/verilator/include/verilated_vcd_c.h \
  /usr/local/share/verilator/include/verilated.h \
  /usr/local/share/verilator/include/verilatedos.h \
@@ -7,4 +7,4 @@ pc_tb.o: ../pc_tb.cpp \
  /usr/local/share/verilator/include/verilated_funcs.h \
  /usr/local/share/verilator/include/verilated_trace.h \
  /usr/local/share/verilator/include/verilated_trace_defs.h \
- /usr/local/share/verilator/include/verilated.h Vpc.h
+ /usr/local/share/verilator/include/verilated.h Vcontrol.h
