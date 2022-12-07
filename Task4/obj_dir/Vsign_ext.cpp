@@ -1,70 +1,65 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Model implementation (design independent parts)
 
-#include "Vcontrol.h"
-#include "Vcontrol__Syms.h"
+#include "Vsign_ext.h"
+#include "Vsign_ext__Syms.h"
 #include "verilated_vcd_c.h"
 
 //============================================================
 // Constructors
 
-Vcontrol::Vcontrol(VerilatedContext* _vcontextp__, const char* _vcname__)
+Vsign_ext::Vsign_ext(VerilatedContext* _vcontextp__, const char* _vcname__)
     : VerilatedModel{*_vcontextp__}
-    , vlSymsp{new Vcontrol__Syms(contextp(), _vcname__, this)}
-    , EQ{vlSymsp->TOP.EQ}
-    , RegWrite{vlSymsp->TOP.RegWrite}
-    , ALUctrl{vlSymsp->TOP.ALUctrl}
-    , ALUsrc{vlSymsp->TOP.ALUsrc}
-    , ALUop{vlSymsp->TOP.ALUop}
+    , vlSymsp{new Vsign_ext__Syms(contextp(), _vcname__, this)}
     , ImmSrc{vlSymsp->TOP.ImmSrc}
-    , PCsrc{vlSymsp->TOP.PCsrc}
-    , Instr{vlSymsp->TOP.Instr}
+    , Imm{vlSymsp->TOP.Imm}
+    , ImmOp{vlSymsp->TOP.ImmOp}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context
     contextp()->addModel(this);
 }
 
-Vcontrol::Vcontrol(const char* _vcname__)
-    : Vcontrol(Verilated::threadContextp(), _vcname__)
+Vsign_ext::Vsign_ext(const char* _vcname__)
+    : Vsign_ext(Verilated::threadContextp(), _vcname__)
 {
 }
 
 //============================================================
 // Destructor
 
-Vcontrol::~Vcontrol() {
+Vsign_ext::~Vsign_ext() {
     delete vlSymsp;
 }
 
 //============================================================
 // Evaluation loop
 
-void Vcontrol___024root___eval_initial(Vcontrol___024root* vlSelf);
-void Vcontrol___024root___eval_settle(Vcontrol___024root* vlSelf);
-void Vcontrol___024root___eval(Vcontrol___024root* vlSelf);
+void Vsign_ext___024root___eval_initial(Vsign_ext___024root* vlSelf);
+void Vsign_ext___024root___eval_settle(Vsign_ext___024root* vlSelf);
+void Vsign_ext___024root___eval(Vsign_ext___024root* vlSelf);
 #ifdef VL_DEBUG
-void Vcontrol___024root___eval_debug_assertions(Vcontrol___024root* vlSelf);
+void Vsign_ext___024root___eval_debug_assertions(Vsign_ext___024root* vlSelf);
 #endif  // VL_DEBUG
-void Vcontrol___024root___final(Vcontrol___024root* vlSelf);
+void Vsign_ext___024root___final(Vsign_ext___024root* vlSelf);
 
-static void _eval_initial_loop(Vcontrol__Syms* __restrict vlSymsp) {
+static void _eval_initial_loop(Vsign_ext__Syms* __restrict vlSymsp) {
     vlSymsp->__Vm_didInit = true;
-    Vcontrol___024root___eval_initial(&(vlSymsp->TOP));
+    Vsign_ext___024root___eval_initial(&(vlSymsp->TOP));
     // Evaluate till stable
     vlSymsp->__Vm_activity = true;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Initial loop\n"););
-        Vcontrol___024root___eval_settle(&(vlSymsp->TOP));
-        Vcontrol___024root___eval(&(vlSymsp->TOP));
+        Vsign_ext___024root___eval_settle(&(vlSymsp->TOP));
+        Vsign_ext___024root___eval(&(vlSymsp->TOP));
     } while (0);
 }
 
-void Vcontrol::eval_step() {
-    VL_DEBUG_IF(VL_DBG_MSGF("+++++TOP Evaluate Vcontrol::eval_step\n"); );
+void Vsign_ext::eval_step() {
+    VL_DEBUG_IF(VL_DBG_MSGF("+++++TOP Evaluate Vsign_ext::eval_step\n"); );
 #ifdef VL_DEBUG
     // Debug assertions
-    Vcontrol___024root___eval_debug_assertions(&(vlSymsp->TOP));
+    Vsign_ext___024root___eval_debug_assertions(&(vlSymsp->TOP));
 #endif  // VL_DEBUG
     // Initialize
     if (VL_UNLIKELY(!vlSymsp->__Vm_didInit)) _eval_initial_loop(vlSymsp);
@@ -72,7 +67,7 @@ void Vcontrol::eval_step() {
     vlSymsp->__Vm_activity = true;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Clock loop\n"););
-        Vcontrol___024root___eval(&(vlSymsp->TOP));
+        Vsign_ext___024root___eval(&(vlSymsp->TOP));
     } while (0);
     // Evaluate cleanup
 }
@@ -80,36 +75,36 @@ void Vcontrol::eval_step() {
 //============================================================
 // Utilities
 
-const char* Vcontrol::name() const {
+const char* Vsign_ext::name() const {
     return vlSymsp->name();
 }
 
 //============================================================
 // Invoke final blocks
 
-VL_ATTR_COLD void Vcontrol::final() {
-    Vcontrol___024root___final(&(vlSymsp->TOP));
+VL_ATTR_COLD void Vsign_ext::final() {
+    Vsign_ext___024root___final(&(vlSymsp->TOP));
 }
 
 //============================================================
 // Implementations of abstract methods from VerilatedModel
 
-const char* Vcontrol::hierName() const { return vlSymsp->name(); }
-const char* Vcontrol::modelName() const { return "Vcontrol"; }
-unsigned Vcontrol::threads() const { return 1; }
-std::unique_ptr<VerilatedTraceConfig> Vcontrol::traceConfig() const {
+const char* Vsign_ext::hierName() const { return vlSymsp->name(); }
+const char* Vsign_ext::modelName() const { return "Vsign_ext"; }
+unsigned Vsign_ext::threads() const { return 1; }
+std::unique_ptr<VerilatedTraceConfig> Vsign_ext::traceConfig() const {
     return std::unique_ptr<VerilatedTraceConfig>{new VerilatedTraceConfig{false, false, false}};
 };
 
 //============================================================
 // Trace configuration
 
-void Vcontrol___024root__trace_init_top(Vcontrol___024root* vlSelf, VerilatedVcd* tracep);
+void Vsign_ext___024root__trace_init_top(Vsign_ext___024root* vlSelf, VerilatedVcd* tracep);
 
 VL_ATTR_COLD static void trace_init(void* voidSelf, VerilatedVcd* tracep, uint32_t code) {
     // Callback from tracep->open()
-    Vcontrol___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<Vcontrol___024root*>(voidSelf);
-    Vcontrol__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    Vsign_ext___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<Vsign_ext___024root*>(voidSelf);
+    Vsign_ext__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     if (!vlSymsp->_vm_contextp__->calcUnusedSigs()) {
         VL_FATAL_MT(__FILE__, __LINE__, __FILE__,
             "Turning on wave traces requires Verilated::traceEverOn(true) call before time 0.");
@@ -117,16 +112,16 @@ VL_ATTR_COLD static void trace_init(void* voidSelf, VerilatedVcd* tracep, uint32
     vlSymsp->__Vm_baseCode = code;
     tracep->scopeEscape(' ');
     tracep->pushNamePrefix(std::string{vlSymsp->name()} + ' ');
-    Vcontrol___024root__trace_init_top(vlSelf, tracep);
+    Vsign_ext___024root__trace_init_top(vlSelf, tracep);
     tracep->popNamePrefix();
     tracep->scopeEscape('.');
 }
 
-VL_ATTR_COLD void Vcontrol___024root__trace_register(Vcontrol___024root* vlSelf, VerilatedVcd* tracep);
+VL_ATTR_COLD void Vsign_ext___024root__trace_register(Vsign_ext___024root* vlSelf, VerilatedVcd* tracep);
 
-VL_ATTR_COLD void Vcontrol::trace(VerilatedVcdC* tfp, int levels, int options) {
+VL_ATTR_COLD void Vsign_ext::trace(VerilatedVcdC* tfp, int levels, int options) {
     if (false && levels && options) {}  // Prevent unused
     tfp->spTrace()->addModel(this);
     tfp->spTrace()->addInitCb(&trace_init, &(vlSymsp->TOP));
-    Vcontrol___024root__trace_register(&(vlSymsp->TOP), tfp->spTrace());
+    Vsign_ext___024root__trace_register(&(vlSymsp->TOP), tfp->spTrace());
 }

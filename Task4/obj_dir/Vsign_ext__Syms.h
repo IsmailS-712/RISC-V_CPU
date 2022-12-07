@@ -4,33 +4,33 @@
 // Internal details; most calling programs do not need this header,
 // unless using verilator public meta comments.
 
-#ifndef VERILATED_VCONTROL__SYMS_H_
-#define VERILATED_VCONTROL__SYMS_H_  // guard
+#ifndef VERILATED_VSIGN_EXT__SYMS_H_
+#define VERILATED_VSIGN_EXT__SYMS_H_  // guard
 
 #include "verilated.h"
 
 // INCLUDE MODEL CLASS
 
-#include "Vcontrol.h"
+#include "Vsign_ext.h"
 
 // INCLUDE MODULE CLASSES
-#include "Vcontrol___024root.h"
+#include "Vsign_ext___024root.h"
 
 // SYMS CLASS (contains all model state)
-class Vcontrol__Syms final : public VerilatedSyms {
+class Vsign_ext__Syms final : public VerilatedSyms {
   public:
     // INTERNAL STATE
-    Vcontrol* const __Vm_modelp;
+    Vsign_ext* const __Vm_modelp;
     bool __Vm_activity = false;  ///< Used by trace routines to determine change occurred
     uint32_t __Vm_baseCode = 0;  ///< Used by trace routines when tracing multiple models
     bool __Vm_didInit = false;
 
     // MODULE INSTANCE STATE
-    Vcontrol___024root             TOP;
+    Vsign_ext___024root            TOP;
 
     // CONSTRUCTORS
-    Vcontrol__Syms(VerilatedContext* contextp, const char* namep, Vcontrol* modelp);
-    ~Vcontrol__Syms();
+    Vsign_ext__Syms(VerilatedContext* contextp, const char* namep, Vsign_ext* modelp);
+    ~Vsign_ext__Syms();
 
     // METHODS
     const char* name() { return TOP.name(); }

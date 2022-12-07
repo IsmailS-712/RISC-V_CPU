@@ -1,4 +1,4 @@
-control_tb.o: ../control_tb.cpp \
+sign_ext_tb.o: ../sign_ext_tb.cpp \
  /usr/local/share/verilator/include/verilated_vcd_c.h \
  /usr/local/share/verilator/include/verilated.h \
  /usr/local/share/verilator/include/verilatedos.h \
@@ -7,4 +7,4 @@ control_tb.o: ../control_tb.cpp \
  /usr/local/share/verilator/include/verilated_funcs.h \
  /usr/local/share/verilator/include/verilated_trace.h \
  /usr/local/share/verilator/include/verilated_trace_defs.h \
- /usr/local/share/verilator/include/verilated.h Vcontrol.h
+ /usr/local/share/verilator/include/verilated.h Vsign_ext.h
