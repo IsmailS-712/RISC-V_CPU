@@ -6,15 +6,31 @@
 
 #include "Vcontrol___024root.h"
 
+extern const VlUnpacked<CData/*1:0*/, 256> Vcontrol__ConstPool__TABLE_h867b1fb7_0;
+extern const VlUnpacked<CData/*0:0*/, 256> Vcontrol__ConstPool__TABLE_he22b48e5_0;
+extern const VlUnpacked<CData/*0:0*/, 256> Vcontrol__ConstPool__TABLE_he3ca740a_0;
+extern const VlUnpacked<CData/*1:0*/, 256> Vcontrol__ConstPool__TABLE_hf3656107_0;
+extern const VlUnpacked<CData/*0:0*/, 256> Vcontrol__ConstPool__TABLE_h216be136_0;
+
 VL_INLINE_OPT void Vcontrol___024root___combo__TOP__0(Vcontrol___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcontrol__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcontrol___024root___combo__TOP__0\n"); );
+    // Init
+    CData/*7:0*/ __Vtableidx1;
     // Body
-    vlSelf->ALUsrc = (3U == (0x7fU & vlSelf->Instr));
-    vlSelf->RegWrite = (3U == (0x7fU & vlSelf->Instr));
-    vlSelf->PCsrc = ((3U == (0x7fU & vlSelf->Instr)) 
-                     & (IData)(vlSelf->EQ));
+    __Vtableidx1 = (((IData)(vlSelf->EQ) << 7U) | (0x7fU 
+                                                   & vlSelf->Instr));
+    vlSelf->ALUop = Vcontrol__ConstPool__TABLE_h867b1fb7_0
+        [__Vtableidx1];
+    vlSelf->RegWrite = Vcontrol__ConstPool__TABLE_he22b48e5_0
+        [__Vtableidx1];
+    vlSelf->ALUsrc = Vcontrol__ConstPool__TABLE_he3ca740a_0
+        [__Vtableidx1];
+    vlSelf->ImmSrc = Vcontrol__ConstPool__TABLE_hf3656107_0
+        [__Vtableidx1];
+    vlSelf->PCsrc = Vcontrol__ConstPool__TABLE_h216be136_0
+        [__Vtableidx1];
     if ((0U == (IData)(vlSelf->ALUop))) {
         vlSelf->ALUctrl = 0U;
     } else if ((1U == (IData)(vlSelf->ALUop))) {

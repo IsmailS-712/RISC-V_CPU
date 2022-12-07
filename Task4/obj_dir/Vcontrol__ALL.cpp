@@ -3,6 +3,7 @@
 #include "Vcontrol.cpp"
 #include "Vcontrol___024root__DepSet_hda5bb238__0.cpp"
 #include "Vcontrol__Trace__0.cpp"
+#include "Vcontrol__ConstPool_0.cpp"
 #include "Vcontrol___024root__Slow.cpp"
 #include "Vcontrol___024root__DepSet_hda5bb238__0__Slow.cpp"
 #include "Vcontrol__Syms.cpp"

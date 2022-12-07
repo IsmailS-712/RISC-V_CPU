@@ -12,7 +12,7 @@ int main (int argc, char **argv, char **env) {
     top->trace (tfp, 99);
     tfp->open ("control.vcd");
 
-    top->Instr = 0xFFC4A303;
+    top->Instr = 0xFE420AE3;
     top->EQ = 0;
 
     for (i=0; i<300; i++) {

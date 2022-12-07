@@ -21,61 +21,71 @@ assign unused = {Instr[31], Instr[29:15], Instr[11:7]};
 
 always_comb
     case(Op)
-        7'b0000011: begin // Opcode = lw "Load Word"
-            ALUop = 2'b00;
-            RegWrite = 1;
-            ALUsrc = 1;
-            ImmSrc = 2'b00;
-            PCsrc = EQ; //0
-        end
-        default: begin
-            ALUop = 2'b00;
-            RegWrite = 0;
-            ALUsrc = 0;
-            ImmSrc = 2'b00;
-            PCsrc = 0; //0
-        end
-/*
-        7'b0100011: begin // Opcode = sw "Store Word"
-            ALUop = 2'b00;
-            RegWrite = 0;
-            ALUsrc = 1;
-            ImmSrc = 2'b01;
-            PCsrc = 0;
-        end
+    7'b0000011: begin // Opcode = lw "Load Word"
+        ALUop = 2'b00;
+        RegWrite = 1;
+        ALUsrc = 1;
+        ImmSrc = 2'b00;
+        PCsrc = 0;
+    end
 
-        7'b0110011: begin // Opcode = R-type 
-            ALUop = 2'b10;
-            RegWrite = 1;
-            ALUsrc = 0;
-            ImmSrc = 0;
-            PCsrc = 0;
-        end
+    7'b0100011: begin // Opcode = sw "Store Word"
+        ALUop = 2'b00;
+        RegWrite = 0;
+        ALUsrc = 1;
+        ImmSrc = 2'b01;
+        PCsrc = 0;
+    end
 
-        7'b1100011: begin // Opcode = beq "Branch if Equal"
-            ALUop = 2'b01;
-            RegWrite = 0;
-            ALUsrc = 0;
-            ImmSrc = 2'b10;
-            PCsrc = EQ && 1;
-        end*/
+    7'b0110011: begin // Opcode = R-type 
+        ALUop = 2'b10;
+        RegWrite = 1;
+        ALUsrc = 0;
+        ImmSrc = 0;
+        PCsrc = 0;
+    end
+
+    7'b1100011: begin // Opcode = beq "Branch if Equal"
+        ALUop = 2'b01;
+        RegWrite = 0;
+        ALUsrc = 0;
+        ImmSrc = 2'b10;
+        PCsrc = EQ && 1;
+    end
+
+    default: begin
+        ALUop = 2'b00;
+        RegWrite = 0;
+        ALUsrc = 0;
+        ImmSrc = 2'b00;
+        PCsrc = 0;
+    end
     endcase
 
 always_latch
+
     if (ALUop == 2'b00)
         ALUctrl = 3'b000; // ADD (LW/SW)
+
     else if (ALUop == 2'b01)
         ALUctrl = 3'b001; // SUBTRACT (BEQ)
+
     else if (ALUop == 2'b10)
+
         if (funct3 == 3'b010)
             ALUctrl = 3'b101; // SET LESS THAN
+
         else if (funct3 == 3'b110)
             ALUctrl = 3'b011; // OR
+
         else if (funct3 == 3'b111)
             ALUctrl = 3'b010; // AND
+
         else if (funct3 == 3'b000)
+
             if(funct7 == 1 && Op[5] == 1)
                 ALUctrl = 3'b001; // SUBTRACT
+                
             else
                 ALUctrl = 3'b000; // ADD
 
