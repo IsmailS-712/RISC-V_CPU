@@ -4,7 +4,6 @@
 
 int main (int argc, char **argv, char **env) {
     int i;
-    int Mem_inc;
 
     Verilated::commandArgs(argc, argv);
 
@@ -15,14 +14,12 @@ int main (int argc, char **argv, char **env) {
     top->trace (tfp, 99);
     tfp->open ("instr_mem.vcd");
 
-    top->Mem_inc = 0;
     top->A = 0;
 
     for (i=0; i<64; i++) {
         tfp->dump (2*i);
         top->eval();
         top->A = (top->A)+1;
-        top->Mem_inc = (i==7);
 
         if (Verilated::gotFinish()) exit(0);
     }
