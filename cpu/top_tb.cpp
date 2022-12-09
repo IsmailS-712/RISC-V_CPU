@@ -17,6 +17,8 @@ int main(int argc, char **argv, char **env)
     tfp->open("top.vcd");
 
     // initialize simulation input
+    top->rst = 1;
+    top->clk = 1;
 
     // run simulation for many clock cycles
     for (i = 0; i < 300; i++)
@@ -26,9 +28,11 @@ int main(int argc, char **argv, char **env)
         for (clk = 0; clk < 2; clk++)
         {
             tfp->dump(2 * i + clk); // unit is in ps
-            // top->clk = !top->clk;
+            top->clk = !top->clk;
             top->eval();
         }
+        top->rst = 0;
+
         // change input stimuli
         //==Step 1: Loadable Counter==
         // top->rst = vbdFlag(); // read the flag register to reset it, after the button is pressed and ARMED
