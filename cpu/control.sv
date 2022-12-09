@@ -24,7 +24,6 @@ assign unused = {Instr[31], Instr[29:15], Instr[11:7]};
 always_latch
     if (Op == 7'b0000011) begin  // Opcode = lw "Load Word"
         ALUop = 2'b00;
-        RegWrite = 1;
         ImmSrc = 2'b00;
         PCsrc = 0;
         Memwrite = 0;
@@ -33,7 +32,6 @@ always_latch
 
     else if (Op == 7'b0100011) begin // Opcode = sw "Store Word"
         ALUop = 2'b00;
-        RegWrite = 0;
         ImmSrc = 2'b01;
         PCsrc = 0;
         Memwrite = 1;
@@ -41,7 +39,6 @@ always_latch
 
     else if (Op == 7'b0110011) begin // Opcode = R-type 
         ALUop = 2'b10;
-        RegWrite = 1;
         ImmSrc = 0;
         PCsrc = 0;
         Memwrite = 0;
@@ -50,7 +47,6 @@ always_latch
 
     else if (Op == 7'b1100011) begin // Opcode = beq "Branch if Equal"
         ALUop = 2'b01;
-        RegWrite = 1;
         ImmSrc = 2'b10;
         PCsrc = EQ && 1;
         Memwrite = 0;
