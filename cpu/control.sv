@@ -21,6 +21,21 @@ assign funct3 = Instr[14:12];
 assign funct7 = Instr[30];
 assign unused = {Instr[31], Instr[29:15], Instr[11:7]};
 
+always_comb
+    casez(Op)
+        7'b0??????: RegWrite = 1; //for most instructions, if 1st opcode bit is 0, they write to register
+        default: RegWrite = 0;
+    endcase
+    //need multiple casez
+always_comb
+    casez(Op)
+        7'b00?????: ALUsrc = 1; //for most instructions, if 2nd opcode bit is 0 then it uses immediates
+        //jump:
+        //7'b1??????: -whatever jump signals-
+        default: ALUsrc = 0;
+    endcase
+
+
 always_latch
     if (Op == 7'b0000011) begin  // Opcode = lw "Load Word"
         ALUop = 2'b00;
@@ -79,14 +94,5 @@ always_latch
                 
             else
                 ALUctrl = 3'b000; // ADD
-
-always_comb
-    casez(Op)
-        7'b0??????: RegWrite = 1; //for most instructions, if 1st opcode bit is 0, they write to register
-        7'b00?????: ALUsrc = 1; //for most instructions, if 2nd opcode bit is 0 then it uses immediates
-        //jump:
-        //7'b1??????: -whatever jump signals-
-        default: ALUsrc = 0;
-    endcase
 
 endmodule
