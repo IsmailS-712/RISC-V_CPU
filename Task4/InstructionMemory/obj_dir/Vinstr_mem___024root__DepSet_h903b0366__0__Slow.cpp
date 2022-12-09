@@ -17,7 +17,7 @@ VL_ATTR_COLD void Vinstr_mem___024root___initial__TOP__0(Vinstr_mem___024root* v
     __Vtemp_hb2c2e739__0[1U] = 0x74696f6eU;
     __Vtemp_hb2c2e739__0[2U] = 0x74727563U;
     __Vtemp_hb2c2e739__0[3U] = 0x696e73U;
-    VL_READMEM_N(true, 32, 32, 0, VL_CVT_PACK_STR_NW(4, __Vtemp_hb2c2e739__0)
+    VL_READMEM_N(true, 8, 28, 0, VL_CVT_PACK_STR_NW(4, __Vtemp_hb2c2e739__0)
                  ,  &(vlSelf->instr_mem__DOT__rom_array)
                  , 0, ~0ULL);
 }
@@ -54,8 +54,8 @@ VL_ATTR_COLD void Vinstr_mem___024root___ctor_var_reset(Vinstr_mem___024root* vl
     // Body
     vlSelf->A = VL_RAND_RESET_I(32);
     vlSelf->RD = VL_RAND_RESET_I(32);
-    for (int __Vi0=0; __Vi0<32; ++__Vi0) {
-        vlSelf->instr_mem__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(32);
+    for (int __Vi0=0; __Vi0<28; ++__Vi0) {
+        vlSelf->instr_mem__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(8);
     }
     for (int __Vi0=0; __Vi0<1; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);

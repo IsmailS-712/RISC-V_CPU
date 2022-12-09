@@ -16,10 +16,10 @@ int main (int argc, char **argv, char **env) {
 
     top->A = 0;
 
-    for (i=0; i<64; i++) {
+    for (i=0; i<28; i++) {
         tfp->dump (2*i);
         top->eval();
-        top->A = (top->A)+1;
+        top->A = (top->A)+4;
 
         if (Verilated::gotFinish()) exit(0);
     }

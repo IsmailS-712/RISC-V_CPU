@@ -15,7 +15,7 @@ class Vinstr_mem___024root final : public VerilatedModule {
     // DESIGN SPECIFIC STATE
     VL_IN(A,31,0);
     VL_OUT(RD,31,0);
-    VlUnpacked<IData/*31:0*/, 32> instr_mem__DOT__rom_array;
+    VlUnpacked<CData/*7:0*/, 28> instr_mem__DOT__rom_array;
     VlUnpacked<CData/*0:0*/, 1> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
