@@ -1,4 +1,4 @@
-#include "VALU.h"
+#include "Vtop.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 
@@ -9,12 +9,12 @@ int main(int argc, char **argv, char **env)
 
     Verilated::commandArgs(argc, argv);
     // init top verilog instance
-    VALU *top = new VALU;
+    Vtop *top = new Vtop;
     // init trace dump
     Verilated::traceEverOn(true);
     VerilatedVcdC *tfp = new VerilatedVcdC;
     top->trace(tfp, 99);
-    tfp->open("ALU.vcd");
+    tfp->open("top.vcd");
 
     // initialize simulation input
 
@@ -35,10 +35,8 @@ int main(int argc, char **argv, char **env)
         // top->en = (i > 4);
 
         // Step 2: Single Stepping
-        top->ALUop1 = 12;
-        top->ALUop2 = 13;
-        top->ALUctrl = 5;
-        if (Verilated::gotFinish())
+        top->zero = 0;
+        top->instr = 31'b if (Verilated::gotFinish())
             exit(0);
     }
 
