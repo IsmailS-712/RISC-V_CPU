@@ -80,7 +80,6 @@ register register(
 
 //ALU.sv outputs
 logic [31:0] ALUout;
-logic [31:0] test;
 logic       EQ;
 
 ALU ALU(
@@ -99,7 +98,7 @@ logic [31:0] Result;
 
 data_mem_mux data_mem(
     .clk(clk),
-    .A(test),
+    .A(ALUout),
     .WE(MemWrite),
     .WD(Regop2),
     .Resultsrc(Resultsrc),
