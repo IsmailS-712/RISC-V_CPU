@@ -83,7 +83,9 @@ always_latch
 always_comb
     casez(Op)
         7'b0??????: RegWrite = 1; //for most instructions, if 1st opcode bit is 0, they write to register
-        7'b?0?????: ALUsrc = 1; //for most instructions, if 2nd opcode bit is 0 then it uses immediates
+        7'b00?????: ALUsrc = 1; //for most instructions, if 2nd opcode bit is 0 then it uses immediates
+        //jump:
+        //7'b1??????: -whatever jump signals-
         default: ALUsrc = 0;
     endcase
 
