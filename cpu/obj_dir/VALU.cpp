@@ -38,7 +38,6 @@ VALU::~VALU() {
 void VALU___024root___eval_initial(VALU___024root* vlSelf);
 void VALU___024root___eval_settle(VALU___024root* vlSelf);
 void VALU___024root___eval(VALU___024root* vlSelf);
-QData VALU___024root___change_request(VALU___024root* vlSelf);
 #ifdef VL_DEBUG
 void VALU___024root___eval_debug_assertions(VALU___024root* vlSelf);
 #endif  // VL_DEBUG
@@ -48,27 +47,12 @@ static void _eval_initial_loop(VALU__Syms* __restrict vlSymsp) {
     vlSymsp->__Vm_didInit = true;
     VALU___024root___eval_initial(&(vlSymsp->TOP));
     // Evaluate till stable
-    int __VclockLoop = 0;
-    QData __Vchange = 1;
     vlSymsp->__Vm_activity = true;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Initial loop\n"););
         VALU___024root___eval_settle(&(vlSymsp->TOP));
         VALU___024root___eval(&(vlSymsp->TOP));
-        if (VL_UNLIKELY(++__VclockLoop > 100)) {
-            // About to fail, so enable debug to see what's not settling.
-            // Note you must run make with OPT=-DVL_DEBUG for debug prints.
-            int __Vsaved_debug = Verilated::debug();
-            Verilated::debug(1);
-            __Vchange = VALU___024root___change_request(&(vlSymsp->TOP));
-            Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("top.sv", 1, "",
-                "Verilated model didn't DC converge\n"
-                "- See https://verilator.org/warn/DIDNOTCONVERGE");
-        } else {
-            __Vchange = VALU___024root___change_request(&(vlSymsp->TOP));
-        }
-    } while (VL_UNLIKELY(__Vchange));
+    } while (0);
 }
 
 void VALU::eval_step() {
@@ -80,26 +64,11 @@ void VALU::eval_step() {
     // Initialize
     if (VL_UNLIKELY(!vlSymsp->__Vm_didInit)) _eval_initial_loop(vlSymsp);
     // Evaluate till stable
-    int __VclockLoop = 0;
-    QData __Vchange = 1;
     vlSymsp->__Vm_activity = true;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Clock loop\n"););
         VALU___024root___eval(&(vlSymsp->TOP));
-        if (VL_UNLIKELY(++__VclockLoop > 100)) {
-            // About to fail, so enable debug to see what's not settling.
-            // Note you must run make with OPT=-DVL_DEBUG for debug prints.
-            int __Vsaved_debug = Verilated::debug();
-            Verilated::debug(1);
-            __Vchange = VALU___024root___change_request(&(vlSymsp->TOP));
-            Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("top.sv", 1, "",
-                "Verilated model didn't converge\n"
-                "- See https://verilator.org/warn/DIDNOTCONVERGE");
-        } else {
-            __Vchange = VALU___024root___change_request(&(vlSymsp->TOP));
-        }
-    } while (VL_UNLIKELY(__Vchange));
+    } while (0);
     // Evaluate cleanup
 }
 

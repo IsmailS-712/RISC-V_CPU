@@ -25,23 +25,21 @@ class VALU___024root final : public VerilatedModule {
     CData/*1:0*/ top__DOT__control__DOT__ALUop;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst;
-    CData/*1:0*/ __Vchglast__TOP__top__DOT__control__DOT__ALUop;
     IData/*31:0*/ top__DOT__PC;
     IData/*31:0*/ top__DOT__instr;
     IData/*31:0*/ top__DOT__ImmOp;
     IData/*31:0*/ top__DOT__Regop1;
     IData/*31:0*/ top__DOT__Regop2;
-    IData/*31:0*/ top__DOT__test;
+    IData/*31:0*/ top__DOT__ALUout;
     IData/*31:0*/ top__DOT__pc__DOT__next_PC;
     IData/*31:0*/ top__DOT__ALU__DOT__ALUop2;
     IData/*31:0*/ top__DOT__data_mem__DOT__RD;
-    IData/*31:0*/ __Vchglast__TOP__top__DOT__ALU__DOT__ALUop2;
     VL_OUT(a0[32],31,0);
     VlUnpacked<IData/*31:0*/, 32> top__DOT____Vcellout__register__a0;
-    VlUnpacked<IData/*31:0*/, 32> top__DOT__instr_mem__DOT__rom_array;
+    VlUnpacked<IData/*31:0*/, 2> top__DOT__instr_mem__DOT__rom_array;
     VlUnpacked<IData/*31:0*/, 32> top__DOT__register__DOT__reg_array;
     VlUnpacked<IData/*31:0*/, 2> top__DOT__data_mem__DOT__data_array;
-    VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
+    VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
     VALU__Syms* const vlSymsp;

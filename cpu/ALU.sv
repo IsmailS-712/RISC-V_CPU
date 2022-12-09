@@ -13,7 +13,7 @@ logic [31:0]      ALUop2;
 assign ALUop2 = ALUsrc ? ImmOp : RegOp2;
 
 always_comb 
-    case (ALUctrl) 
+    case (ALUctrl)
     3'b000: ALUout = ALUop1 + ALUop2; //ADD
     3'b001: ALUout = ALUop1 - ALUop2; //SUB
     3'b010: ALUout = ALUop1 & ALUop2; //AND

@@ -21,9 +21,8 @@ assign funct3 = Instr[14:12];
 assign funct7 = Instr[30];
 assign unused = {Instr[31], Instr[29:15], Instr[11:7]};
 
-always_comb
-    case(Op)
-    7'b0000011: begin // Opcode = lw "Load Word"
+always_latch
+    if (Op == 7'b0000011) begin  // Opcode = lw "Load Word"
         ALUop = 2'b00;
         RegWrite = 1;
         ALUsrc = 1;
@@ -33,7 +32,7 @@ always_comb
         Resultsrc = 1;
     end
 
-    7'b0100011: begin // Opcode = sw "Store Word"
+    else if (Op == 7'b0100011) begin // Opcode = sw "Store Word"
         ALUop = 2'b00;
         RegWrite = 0;
         ALUsrc = 1;
@@ -42,7 +41,7 @@ always_comb
         Memwrite = 1;
     end
 
-    7'b0110011: begin // Opcode = R-type 
+    else if (Op == 7'b0110011) begin // Opcode = R-type 
         ALUop = 2'b10;
         RegWrite = 1;
         ALUsrc = 0;
@@ -52,7 +51,7 @@ always_comb
         Resultsrc = 0;
     end
 
-    7'b1100011: begin // Opcode = beq "Branch if Equal"
+    else if (Op == 7'b1100011) begin // Opcode = beq "Branch if Equal"
         ALUop = 2'b01;
         RegWrite = 0;
         ALUsrc = 0;
@@ -61,14 +60,6 @@ always_comb
         Memwrite = 0;
     end
 
-    default: begin
-        ALUop = 2'b00;
-        RegWrite = 0;
-        ALUsrc = 0;
-        ImmSrc = 2'b00;
-        PCsrc = 0;
-    end
-    endcase
 
 always_latch
 

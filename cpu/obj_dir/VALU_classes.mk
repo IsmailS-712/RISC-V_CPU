@@ -28,7 +28,6 @@ VM_CLASSES_FAST += \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
-	VALU__ConstPool_0 \
 	VALU___024root__Slow \
 	VALU___024root__DepSet_hb750f242__0__Slow \
 
