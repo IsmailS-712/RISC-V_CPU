@@ -9,6 +9,6 @@ initial begin
     $readmemh("instruction.mem", rom_array);
 end;
 
-assign RD = rom_array[A];
+assign RD = rom_array[(A/4)];
 
 endmodule
