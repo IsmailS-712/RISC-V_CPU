@@ -7,7 +7,7 @@ module data_mem_mux (
     output logic [31:0]     Result
 );
 
-logic [31:0] data_array [(2**32)-1:0];
+logic [31:0] data_array [31:0];
 logic [31:0] RD;
 
 always_ff @(posedge clk)

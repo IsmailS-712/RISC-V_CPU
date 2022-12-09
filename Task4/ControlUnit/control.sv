@@ -6,9 +6,12 @@ module control(
     output logic        ALUsrc,
     output logic [1:0]  ALUop,
     output logic [1:0]  ImmSrc,
-    output logic        PCsrc
+    output logic        PCsrc,
+    output logic        Resultsrc,
+    output logic        Memwrite
 );
 
+logic [1:0]     ALUop;
 logic [6:0]     Op;
 logic [14:12]   funct3;
 logic           funct7;
@@ -27,6 +30,8 @@ always_comb
         ALUsrc = 1;
         ImmSrc = 2'b00;
         PCsrc = 0;
+        Memwrite = 0;
+        Resultsrc = 1;
     end
 
     7'b0100011: begin // Opcode = sw "Store Word"
@@ -35,6 +40,7 @@ always_comb
         ALUsrc = 1;
         ImmSrc = 2'b01;
         PCsrc = 0;
+        Memwrite = 1;
     end
 
     7'b0110011: begin // Opcode = R-type 
@@ -43,6 +49,8 @@ always_comb
         ALUsrc = 0;
         ImmSrc = 0;
         PCsrc = 0;
+        Memwrite = 0;
+        Resultsrc = 0;
     end
 
     7'b1100011: begin // Opcode = beq "Branch if Equal"
@@ -51,6 +59,7 @@ always_comb
         ALUsrc = 0;
         ImmSrc = 2'b10;
         PCsrc = EQ && 1;
+        Memwrite = 0;
     end
 
     default: begin

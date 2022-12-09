@@ -10,7 +10,8 @@ module ALU (
 
 logic [31:0]      ALUop2;
 
-assign ALUop2 = ALUsrc ? ImmOp : RegOp2;
+always_comb
+    assign ALUop2 = ALUsrc ? ImmOp : RegOp2;
 
 always_comb 
     case (ALUctrl) 

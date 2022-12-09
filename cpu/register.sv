@@ -7,14 +7,14 @@ module register (
     input logic [31:0]      WD3,
     output logic [31:0]     RD1,
     output logic [31:0]     RD2,
-    output logic [31:0]     a0 [4:0]
+    output logic [31:0]     a0 [31:0]
 );
 
-logic [31:0] reg_array [4:0];
+logic [31:0] reg_array [31:0];
 
 always_ff @(posedge clk) begin
     if (WE3 == 1'b1)
-        reg_array[AD3] = WD3;
+        reg_array[AD3] <= WD3;
 end
 
 always_comb begin

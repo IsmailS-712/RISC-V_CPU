@@ -1,7 +1,7 @@
 module top (
     input logic             clk,
     input logic             rst,
-    output logic [31:0]     a0 [4:0]
+    output logic [31:0]     a0 [31:0]
 );
 
 //pc.sv outputs
@@ -21,7 +21,7 @@ logic [31:0] instr;
 logic [4:0] rs1;
 logic [4:0] rs2;
 logic [4:0] rd;
-logic [31:7] Imm;
+logic [31:0] Imm;
 
 instr_mem instr_mem(
     .A(PC),
@@ -29,34 +29,34 @@ instr_mem instr_mem(
 );
 
 
-//controlnew.sv outputs
+//control.sv outputs
 logic       PCsrc;
 logic       Resultsrc;
 logic       MemWrite;
 logic [2:0] ALUctrl;
 logic       ALUsrc;
-logic       ImmSrc;
+logic [1:0] ImmSrc;
 logic       RegWrite;
 
-controlnew control(
-    .instr(instr),
-    .zero(EQ),
-    .PCsrc(PCsrc),
-    .Resultsrc(Resultsrc),
-    .MemWrite(MemWrite),
+control control(
+    .EQ(EQ),
+    .Instr(instr),
+    .RegWrite(RegWrite),
     .ALUctrl(ALUctrl),
     .ALUsrc(ALUsrc),
-    .Immsrc(ImmSrc),
-    .RegWrite(RegWrite)
+    .PCsrc(PCsrc),
+    .ImmSrc(ImmSrc),
+    .Resultsrc(Resultsrc),
+    .Memwrite(MemWrite)
 );
 
 
-//signextension.sv outputs
+//sign_ext.sv outputs
 logic [31:0] ImmOp;
 
-Signextension signextend(
+sign_ext signextend(
     .Imm(Imm),
-    .Immsrc(ImmSrc),
+    .ImmSrc(ImmSrc),
     .ImmOp(ImmOp)
 );
 
@@ -80,6 +80,7 @@ register register(
 
 //ALU.sv outputs
 logic [31:0] ALUout;
+logic [31:0] test;
 logic       EQ;
 
 ALU ALU(
@@ -98,7 +99,7 @@ logic [31:0] Result;
 
 data_mem_mux data_mem(
     .clk(clk),
-    .A(ALUout),
+    .A(test),
     .WE(MemWrite),
     .WD(Regop2),
     .Resultsrc(Resultsrc),
@@ -110,6 +111,6 @@ data_mem_mux data_mem(
 assign rs1 = instr[19:15];
 assign rs2 = instr[24:20];
 assign rd = instr[11:7];
-assign Imm = instr[31:7];
+assign Imm = instr[31:0];
 
 endmodule
