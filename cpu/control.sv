@@ -50,7 +50,7 @@ always_latch
 
     else if (Op == 7'b1100011) begin // Opcode = beq "Branch if Equal"
         ALUop = 2'b01;
-        RegWrite = 0;
+        RegWrite = 1;
         ImmSrc = 2'b10;
         PCsrc = EQ && 1;
         Memwrite = 0;
@@ -86,6 +86,7 @@ always_latch
 
 always_comb
     casez(Op)
+        7'b0??????: RegWrite = 1; //for most instructions, if 1st opcode bit is 0, they write to register
         7'b?0?????: ALUsrc = 1; //for most instructions, if 2nd opcode bit is 0 then it uses immediates
         default: ALUsrc = 0;
     endcase
