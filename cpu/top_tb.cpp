@@ -1,5 +1,5 @@
 #include "Vtop.h"
-#include "verilated.h"
+#include "verilated.h" f
 #include "verilated_vcd_c.h"
 
 int main(int argc, char **argv, char **env)
@@ -35,9 +35,6 @@ int main(int argc, char **argv, char **env)
         // top->en = (i > 4);
 
         // Step 2: Single Stepping
-        top->zero = 0;
-        top->instr = 31'b if (Verilated::gotFinish())
-            exit(0);
     }
 
     tfp->close();
