@@ -6,7 +6,7 @@ module instr_mem (
 logic [31:0] rom_array [12'hFFF:0];
 
 initial begin
-    $readmemh("instruction.mem", rom_array);
+    $readmemh("instruction.hex", rom_array);
 end;
 
 assign RD = rom_array[(A/4)];
