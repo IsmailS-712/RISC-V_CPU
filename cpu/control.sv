@@ -61,12 +61,20 @@ always_latch
         Resultsrc = 0;
     end
 
-    else if (Op == 7'b1100011) begin // Opcode = beq "Branch if Equal"
+    else if (Op == 7'b1100011) begin // Opcode = BEQ
         ALUop = 2'b01;
         ImmSrc = 2'b10;
-        PCsrc = EQ && 1;
+        PCsrc = ~EQ;
         Memwrite = 0;
     end
+
+    else if (Op == 7'b1100011) begin // Opcode = BNE
+        ALUop = 2'b01;
+        ImmSrc = 2'b10;
+        PCsrc = EQ;
+        Memwrite = 0;
+    end
+    else ALUop = 2'b00;
 
 
 always_latch
@@ -75,7 +83,7 @@ always_latch
         ALUctrl = 3'b000; // ADD (LW/SW)
 
     else if (ALUop == 2'b01)
-        ALUctrl = 3'b001; // SUBTRACT (BEQ)
+        ALUctrl = 3'b001; // SUBTRACT (BNE)
 
     else if (ALUop == 2'b10)
 
