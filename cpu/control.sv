@@ -50,6 +50,7 @@ always_latch
         ImmSrc = 2'b01;
         PCsrc = 0;
         Memwrite = 1;
+        RegWrite = 0;
     end
 
     else if (Op == 7'b0110011) begin // Opcode = R-type 
