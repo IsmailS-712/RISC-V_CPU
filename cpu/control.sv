@@ -93,7 +93,7 @@ always_latch
         RegWrite = 1;
         reg_jump = 1;
     end
-    if (Op == 7'b0110111) begin  // Opcode = LUI
+    else if (Op == 7'b0110111) begin  // Opcode = LUI
         ALUop = 3'b111;
         ImmSrc = 3'b111;
         PCsrc = 0;
@@ -110,8 +110,8 @@ always_latch
 
 
 
-always_latch
-
+always_comb
+begin
     if (ALUop == 3'b000)
         if(funct3==3'b010)
             ALUctrl = 4'b0000; // ADD (LW/SW)
@@ -145,4 +145,5 @@ always_latch
                 ALUctrl = 4'b0000; // ADD
         else if (ALUop == 3'b111) 
             ALUctrl = 4'b1111;  //LUI
+end
 endmodule
