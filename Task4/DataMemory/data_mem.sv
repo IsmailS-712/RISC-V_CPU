@@ -10,7 +10,6 @@ logic [31:0] data_array [5:0];
 
 initial begin
     $readmemh("data.hex", data_array);
-    $write("data.hex", WD);
 end;
 
 always_ff @ (posedge clk) begin
