@@ -14,6 +14,7 @@ VL_ATTR_COLD void Vdata_mem___024root___initial__TOP__0(Vdata_mem___024root* vlS
     VL_READMEM_N(true, 32, 6, 0, std::string{"data.hex"}
                  ,  &(vlSelf->data_mem__DOT__data_array)
                  , 0, ~0ULL);
+    VL_WRITEF("data.hex%10#",32,vlSelf->WD);
 }
 
 VL_ATTR_COLD void Vdata_mem___024root___eval_initial(Vdata_mem___024root* vlSelf) {

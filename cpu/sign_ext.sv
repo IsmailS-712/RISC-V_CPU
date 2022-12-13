@@ -13,7 +13,7 @@ always_comb begin
         2'b10:
             ImmOp = {{20{Imm[31]}},Imm[7],Imm[30:25],Imm[11:8],1'b0};
         2'b11:
-            ImmOp = {{13{Imm[31]}},Imm[19:12],Imm[20],Imm[30:21],1'b0}; //JAL
+            ImmOp = {{12{Imm[31]}},Imm[19:12],Imm[20],Imm[30:21],1'b0}; //JAL
     endcase
 end
 
