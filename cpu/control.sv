@@ -30,8 +30,6 @@ always_comb
 always_comb
     casez(Op)
         7'b00?????: ALUsrc = 1; //for most instructions, if 2nd opcode bit is 0 then it uses immediates
-        //jump:
-        //7'b1??????: -whatever jump signals-
         default: ALUsrc = 0;
     endcase
 
@@ -74,7 +72,18 @@ always_latch
         PCsrc = EQ;
         Memwrite = 0;
     end
-    else ALUop = 2'b00;
+    else if (Op == 7'b1101111) begin // JAL
+        ALUop = 2'b11;
+        ImmSrc = 2'b11;
+        PCsrc = 1;
+        Memwrite = 0;
+        RegWrite = 1;
+    end
+    else begin
+        ALUop = 2'b00;
+        PCsrc = 0;
+    end
+
 
 
 always_latch
@@ -83,8 +92,11 @@ always_latch
         ALUctrl = 3'b000; // ADD (LW/SW)
 
     else if (ALUop == 2'b01)
-        ALUctrl = 3'b001; // SUBTRACT (BNE)
-
+        ALUctrl = 3'b001; // SUBTRACT (BNE/BEQ)
+    
+    else if (ALUop == 2'b11)
+        ALUctrl = 3'b111; //JAL
+    
     else if (ALUop == 2'b10)
 
         if (funct3 == 3'b010)

@@ -6,13 +6,15 @@ module top (
 
 //pc.sv outputs
 logic [31:0] PC;
+logic [31:0] incPC;
 
 pc pc(
     .ImmOp(ImmOp),
     .clk(clk),
     .rst(rst),
     .PCsrc(PCsrc),
-    .PC_out(PC)
+    .PC_out(PC),
+    .incPC(incPC)
 );
 
 
@@ -89,6 +91,7 @@ ALU ALU(
     .ImmOp(ImmOp),
     .ALUsrc(ALUsrc),
     .ALUout(ALUout),
+    .incPC(incPC),
     .EQ(EQ)
 );
 
