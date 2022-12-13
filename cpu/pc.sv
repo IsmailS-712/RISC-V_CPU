@@ -19,7 +19,7 @@ assign incPC    = PC_out + 32'b100;
 assign next_PC   = PCsrc ? branch_PC : inc_PC;
 
 always_ff @(posedge clk, posedge rst) 
-    if (rst) PC_out <= 32'b0;
-    else     PC_out <= next_PC;
+    if (rst) PC_out <= 32'hBFC00000;
+    else     PC_out <= next_PC + 32'hBFC00000;
 
 endmodule

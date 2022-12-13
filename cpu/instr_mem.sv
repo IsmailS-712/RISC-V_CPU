@@ -3,7 +3,7 @@ module instr_mem (
     output logic [31:0]     RD
 );
 
-logic [31:0] rom_array [12'hFFF:0];
+logic [31:0] rom_array [32'hBFC00FFF:32'hBFC00000];
 
 initial begin
     $readmemh("instruction.hex", rom_array);
