@@ -1,16 +1,16 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table implementation internals
 
-#include "Vinstr_mem__Syms.h"
-#include "Vinstr_mem.h"
-#include "Vinstr_mem___024root.h"
+#include "Vdata_mem__Syms.h"
+#include "Vdata_mem.h"
+#include "Vdata_mem___024root.h"
 
 // FUNCTIONS
-Vinstr_mem__Syms::~Vinstr_mem__Syms()
+Vdata_mem__Syms::~Vdata_mem__Syms()
 {
 }
 
-Vinstr_mem__Syms::Vinstr_mem__Syms(VerilatedContext* contextp, const char* namep, Vinstr_mem* modelp)
+Vdata_mem__Syms::Vdata_mem__Syms(VerilatedContext* contextp, const char* namep, Vdata_mem* modelp)
     : VerilatedSyms{contextp}
     // Setup internal state of the Syms class
     , __Vm_modelp{modelp}

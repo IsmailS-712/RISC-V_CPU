@@ -1,4 +1,4 @@
-instr_mem_tb.o: ../instr_mem_tb.cpp \
+data_mem_tb.o: ../data_mem_tb.cpp \
  /usr/local/share/verilator/include/verilated_vcd_c.h \
  /usr/local/share/verilator/include/verilated.h \
  /usr/local/share/verilator/include/verilatedos.h \
@@ -7,4 +7,4 @@ instr_mem_tb.o: ../instr_mem_tb.cpp \
  /usr/local/share/verilator/include/verilated_funcs.h \
  /usr/local/share/verilator/include/verilated_trace.h \
  /usr/local/share/verilator/include/verilated_trace_defs.h \
- /usr/local/share/verilator/include/verilated.h Vinstr_mem.h
+ /usr/local/share/verilator/include/verilated.h Vdata_mem.h

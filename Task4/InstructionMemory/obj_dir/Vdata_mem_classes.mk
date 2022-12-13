@@ -2,7 +2,7 @@
 # DESCRIPTION: Verilator output: Make include file with class lists
 #
 # This file lists generated Verilated files, for including in higher level makefiles.
-# See Vinstr_mem.mk for the caller.
+# See Vdata_mem.mk for the caller.
 
 ### Switches...
 # C11 constructs required?  0/1 (always on now)
@@ -23,22 +23,22 @@ VM_TRACE_FST = 0
 ### Object file lists...
 # Generated module classes, fast-path, compile with highest optimization
 VM_CLASSES_FAST += \
-	Vinstr_mem \
-	Vinstr_mem___024root__DepSet_h903b0366__0 \
+	Vdata_mem \
+	Vdata_mem___024root__DepSet_hafcf9520__0 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
-	Vinstr_mem___024root__Slow \
-	Vinstr_mem___024root__DepSet_h903b0366__0__Slow \
+	Vdata_mem___024root__Slow \
+	Vdata_mem___024root__DepSet_hafcf9520__0__Slow \
 
 # Generated support classes, fast-path, compile with highest optimization
 VM_SUPPORT_FAST += \
-	Vinstr_mem__Trace__0 \
+	Vdata_mem__Trace__0 \
 
 # Generated support classes, non-fast-path, compile with low/medium optimization
 VM_SUPPORT_SLOW += \
-	Vinstr_mem__Syms \
-	Vinstr_mem__Trace__0__Slow \
+	Vdata_mem__Syms \
+	Vdata_mem__Trace__0__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \
