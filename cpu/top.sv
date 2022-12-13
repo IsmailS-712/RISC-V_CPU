@@ -1,7 +1,9 @@
 module top (
     input logic             clk,
     input logic             rst,
-    output logic [31:0]     a0 [31:0]
+    input logic             trigger,
+    output logic [31:0]     a0 [31:0],
+    output logic [7:0]      data_out
 );
 
 //pc.sv outputs
@@ -80,7 +82,8 @@ register register(
     .WD3(Result),
     .RD1(Regop1),
     .RD2(Regop2),
-    .a0(a0)
+    .a0(a0),
+    .trigger(trigger)
 );
 
 
@@ -118,5 +121,15 @@ assign rs1 = instr[19:15];
 assign rs2 = instr[24:20];
 assign rd = instr[11:7];
 assign Imm = instr[31:0];
+
+//data_out bus
+assign data_out[0] = a0[20][0];
+assign data_out[1] = a0[20][1];
+assign data_out[2] = a0[20][2];
+assign data_out[3] = a0[20][3];
+assign data_out[4] = a0[20][4];
+assign data_out[5] = a0[20][5];
+assign data_out[6] = a0[20][6];
+assign data_out[7] = a0[20][7];
 
 endmodule

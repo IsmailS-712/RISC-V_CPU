@@ -1,5 +1,6 @@
 module register (
     input logic             clk,
+    input logic             trigger,
     input logic [4:0]       AD1,
     input logic [4:0]       AD2,
     input logic [4:0]       AD3,
@@ -15,7 +16,8 @@ logic [31:0] reg_array [31:0];
 always_ff @(posedge clk) begin
     if (WE3 == 1'b1)
         reg_array[AD3] <= WD3;
-        reg_array[32'b0] <= 32'b0;
+        reg_array[0] <= 32'b0;
+        reg_array[31] <= trigger;
 end
 
 always_comb begin
