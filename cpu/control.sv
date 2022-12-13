@@ -54,9 +54,9 @@ always_latch
         reg_jump = 0;
     end
 
-    else if (Op == 7'b0110011) begin // Opcode = R-type 
+    else if (Op == 7'b0110011 | Op == 7'b0010011) begin // Opcode = R-type or li "load immediate"
         ALUop = 2'b10;
-        ImmSrc = 0;
+        ImmSrc = 2'b00;
         PCsrc = 0;
         Memwrite = 0;
         Resultsrc = 0;
