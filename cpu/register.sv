@@ -17,7 +17,7 @@ always_ff @(posedge clk) begin
     if (WE3 == 1'b1)
         reg_array[AD3] <= WD3;
         reg_array[0] <= 32'b0;
-        reg_array[31] <= trigger;
+        reg_array[31] <= {{31{1'b0}},trigger};
 end
 
 always_comb begin
