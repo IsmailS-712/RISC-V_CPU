@@ -15,7 +15,7 @@ always_comb begin
         3'b011:
             ImmOp = {{12{Imm[31]}},Imm[19:12],Imm[20],Imm[30:21],1'b0}; //JAL
         3'b111:
-            ImmOp = {{Imm[31:12]}, 12'b0}   //LUI
+            ImmOp = {{Imm[31:12]}, 12'b0};   //LUI
         defalu:
             ImmOp = {32'b0};
     endcase
