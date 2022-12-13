@@ -14,7 +14,9 @@ pc pc(
     .rst(rst),
     .PCsrc(PCsrc),
     .PC_out(PC),
-    .incPC(incPC)
+    .incPC(incPC),
+    .reg_addr(Regop1),
+    .reg_jump(reg_jump)
 );
 
 
@@ -39,6 +41,7 @@ logic [2:0] ALUctrl;
 logic       ALUsrc;
 logic [1:0] ImmSrc;
 logic       RegWrite;
+logic       reg_jump;
 
 control control(
     .EQ(EQ),
@@ -49,7 +52,8 @@ control control(
     .PCsrc(PCsrc),
     .ImmSrc(ImmSrc),
     .Resultsrc(Resultsrc),
-    .Memwrite(MemWrite)
+    .Memwrite(MemWrite),
+    .reg_jump(reg_jump)
 );
 
 

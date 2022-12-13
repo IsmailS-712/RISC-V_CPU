@@ -7,7 +7,8 @@ module control(
     output logic [1:0]  ImmSrc,
     output logic        PCsrc,
     output logic        Resultsrc,
-    output logic        Memwrite
+    output logic        Memwrite,
+    output logic        reg_jump
 );
 
 logic [1:0]     ALUop;
@@ -41,6 +42,7 @@ always_latch
         PCsrc = 0;
         Memwrite = 0;
         Resultsrc = 1;
+        reg_jump = 0;
     end
 
     else if (Op == 7'b0100011) begin // Opcode = sw "Store Word"
@@ -49,6 +51,7 @@ always_latch
         PCsrc = 0;
         Memwrite = 1;
         RegWrite = 0;
+        reg_jump = 0;
     end
 
     else if (Op == 7'b0110011) begin // Opcode = R-type 
@@ -57,6 +60,7 @@ always_latch
         PCsrc = 0;
         Memwrite = 0;
         Resultsrc = 0;
+        reg_jump = 0;
     end
 
     else if (Op == 7'b1100011) begin // Opcode = BEQ
@@ -64,6 +68,7 @@ always_latch
         ImmSrc = 2'b10;
         PCsrc = ~EQ;
         Memwrite = 0;
+        reg_jump = 0;
     end
 
     else if (Op == 7'b1100011) begin // Opcode = BNE
@@ -71,6 +76,7 @@ always_latch
         ImmSrc = 2'b10;
         PCsrc = EQ;
         Memwrite = 0;
+        reg_jump = 0;
     end
     else if (Op == 7'b1101111) begin // JAL
         ALUop = 2'b11;
@@ -78,10 +84,19 @@ always_latch
         PCsrc = 1;
         Memwrite = 0;
         RegWrite = 1;
+        reg_jump = 0;
+    end
+    else if (Op == 7'b1100111) begin // JALR
+        ALUop = 2'b11;
+        PCsrc = 1;
+        Memwrite = 0;
+        RegWrite = 1;
+        reg_jump = 1;
     end
     else begin
         ALUop = 2'b00;
         PCsrc = 0;
+        reg_jump = 0;
     end
 
 
