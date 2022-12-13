@@ -1,6 +1,7 @@
 #include "Vtop.h"
-#include "verilated.h" f
+#include "verilated.h"
 #include "verilated_vcd_c.h"
+#include "vbuddy.cpp"
 
 int main(int argc, char **argv, char **env)
 {
@@ -16,13 +17,15 @@ int main(int argc, char **argv, char **env)
     top->trace(tfp, 99);
     tfp->open("top.vcd");
 
-    // initialize simulation input
-    top->rst = 1;
-    top->clk = 1;
-    top->trigger = 1;
+    // init Vbuddy
+    if (vbdOpen() != 1)
+        return (-1);
+    vbdHeader("RISC-V");
 
+    // initialize simulation input
+    vbdSetMode(0);
     // run simulation for many clock cycles
-    for (i = 0; i < 300; i++)
+    for (i = 0; i < 500; i++)
     {
 
         // dump variables into VCD file and toggle clock
@@ -32,17 +35,15 @@ int main(int argc, char **argv, char **env)
             top->clk = !top->clk;
             top->eval();
         }
-        top->rst = 0;
-        top->trigger = (i==24);
 
-        // change input stimuli
-        //==Step 1: Loadable Counter==
-        // top->rst = vbdFlag(); // read the flag register to reset it, after the button is pressed and ARMED
-        // top->en = (i > 4);
+        top->trigger = not(vbdFlag());
+        vbdBar(top->data_out);
+        vbdCycle(i);
 
-        // Step 2: Single Stepping
+        if (Verilated::gotFinish())
+            exit(0);
     }
-
+    vbdClose();
     tfp->close();
     exit(0);
 }

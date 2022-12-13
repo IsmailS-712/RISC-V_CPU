@@ -14,6 +14,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__0(Vtop___024root* vlSelf) {
     CData/*4:0*/ __Vdlyvdim0__top__DOT__register__DOT__reg_array__v0;
     IData/*31:0*/ __Vdlyvval__top__DOT__register__DOT__reg_array__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__register__DOT__reg_array__v0;
+    IData/*31:0*/ __Vdlyvval__top__DOT__register__DOT__reg_array__v2;
     IData/*16:0*/ __Vdlyvdim0__top__DOT__data_mem__DOT__data_array__v0;
     IData/*31:0*/ __Vdlyvval__top__DOT__data_mem__DOT__data_array__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__data_mem__DOT__data_array__v0;
@@ -36,11 +37,15 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__0(Vtop___024root* vlSelf) {
         __Vdlyvdim0__top__DOT__register__DOT__reg_array__v0 
             = (0x1fU & (vlSelf->top__DOT__instr >> 7U));
     }
+    __Vdlyvval__top__DOT__register__DOT__reg_array__v2 
+        = vlSelf->trigger;
     if (__Vdlyvset__top__DOT__register__DOT__reg_array__v0) {
         vlSelf->top__DOT__register__DOT__reg_array[__Vdlyvdim0__top__DOT__register__DOT__reg_array__v0] 
             = __Vdlyvval__top__DOT__register__DOT__reg_array__v0;
     }
     vlSelf->top__DOT__register__DOT__reg_array[0U] = 0U;
+    vlSelf->top__DOT__register__DOT__reg_array[0x1fU] 
+        = __Vdlyvval__top__DOT__register__DOT__reg_array__v2;
     vlSelf->top__DOT__data_mem__DOT__RD = vlSelf->top__DOT__data_mem__DOT__data_array
         [(0x1ffffU & vlSelf->top__DOT__ALUout)];
     vlSelf->top__DOT____Vcellout__register__a0[0x1fU] 
@@ -207,6 +212,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__0(Vtop___024root* vlSelf) {
         [1U];
     vlSelf->a0[0U] = vlSelf->top__DOT____Vcellout__register__a0
         [0U];
+    vlSelf->data_out = (0xffU & vlSelf->a0[0x14U]);
 }
 
 VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
@@ -407,7 +413,7 @@ VL_INLINE_OPT QData Vtop___024root___change_request_1(Vtop___024root* vlSelf) {
     // Change detection
     QData __req = false;  // Logically a bool
     __req |= ((vlSelf->top__DOT__ALUout ^ vlSelf->__Vchglast__TOP__top__DOT__ALUout));
-    VL_DEBUG_IF( if(__req && ((vlSelf->top__DOT__ALUout ^ vlSelf->__Vchglast__TOP__top__DOT__ALUout))) VL_DBG_MSGF("        CHANGE: top.sv:88: top.ALUout\n"); );
+    VL_DEBUG_IF( if(__req && ((vlSelf->top__DOT__ALUout ^ vlSelf->__Vchglast__TOP__top__DOT__ALUout))) VL_DBG_MSGF("        CHANGE: top.sv:91: top.ALUout\n"); );
     // Final
     vlSelf->__Vchglast__TOP__top__DOT__ALUout = vlSelf->top__DOT__ALUout;
     return __req;
@@ -423,5 +429,7 @@ void Vtop___024root___eval_debug_assertions(Vtop___024root* vlSelf) {
         Verilated::overWidthError("clk");}
     if (VL_UNLIKELY((vlSelf->rst & 0xfeU))) {
         Verilated::overWidthError("rst");}
+    if (VL_UNLIKELY((vlSelf->trigger & 0xfeU))) {
+        Verilated::overWidthError("trigger");}
 }
 #endif  // VL_DEBUG

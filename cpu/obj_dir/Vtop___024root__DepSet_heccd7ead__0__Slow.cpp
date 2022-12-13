@@ -231,6 +231,7 @@ VL_ATTR_COLD void Vtop___024root___settle__TOP__0(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__RegWrite = Vtop__ConstPool__TABLE_h0947e088_0
             [__Vtableidx1];
     }
+    vlSelf->data_out = (0xffU & vlSelf->a0[0x14U]);
     if ((0U == (IData)(vlSelf->top__DOT__control__DOT__ALUop))) {
         vlSelf->top__DOT__ALUctrl = 0U;
     } else if ((1U == (IData)(vlSelf->top__DOT__control__DOT__ALUop))) {
@@ -366,9 +367,11 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     // Body
     vlSelf->clk = VL_RAND_RESET_I(1);
     vlSelf->rst = VL_RAND_RESET_I(1);
+    vlSelf->trigger = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->a0[__Vi0] = VL_RAND_RESET_I(32);
     }
+    vlSelf->data_out = VL_RAND_RESET_I(8);
     vlSelf->top__DOT__PC = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__instr = VL_RAND_RESET_I(32);
     vlSelf->top__DOT__PCsrc = VL_RAND_RESET_I(1);
