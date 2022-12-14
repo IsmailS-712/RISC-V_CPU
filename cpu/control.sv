@@ -110,19 +110,19 @@ always_latch
 
 always_latch
 
-    if (ALUop == 2'b00){
-        if (funct3 == 3'b000)
-            ALUctrl = 3'b101; // SB
-        else 
-            ALUctrl = 3'b000 // SW
-    }
+    if ((ALUop == 2'b00) & (funct3 == 3'b000))
+        ALUctrl = 3'b101; // SB
+
+    else if ((ALUop == 2'b00) & (funct3 != 3'b000))
+        ALUctrl = 3'b000; // SW
+
     else if (ALUop == 2'b01)
         ALUctrl = 3'b001; // SUBTRACT (BNE/BEQ)
     
     else if (ALUop == 2'b11)
         ALUctrl = 3'b111; //JAL
     
-    else if (ALUop == 2'b10){
+    else if (ALUop == 2'b10)
 
         if (funct3 == 3'b110)
             ALUctrl = 3'b011; // OR
@@ -137,6 +137,5 @@ always_latch
                 
             else
                 ALUctrl = 3'b000; // ADD
-    }
 
 endmodule

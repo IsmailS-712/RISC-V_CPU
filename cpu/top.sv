@@ -41,7 +41,7 @@ logic       Resultsrc;
 logic       MemWrite;
 logic [2:0] ALUctrl;
 logic       ALUsrc;
-logic [2:0] ImmSrc;
+logic [1:0] ImmSrc;
 logic       RegWrite;
 logic       reg_jump;
 
