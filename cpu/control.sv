@@ -2,7 +2,7 @@ module control(
     input logic         EQ,
     input logic [31:0]  Instr,
     output logic        RegWrite,
-    output logic [3:0]  ALUctrl,
+    output logic [2:0]  ALUctrl,
     output logic        ALUsrc,
     output logic [2:0]  ImmSrc,
     output logic        PCsrc,
@@ -110,40 +110,40 @@ always_latch
 
 
 
-always_comb
+always_latch
 begin
     if (ALUop == 3'b000)
         if(funct3==3'b010)
-            ALUctrl = 4'b0000; // ADD (LW/SW)
+            ALUctrl = 3'b000; // ADD (LW/SW)
         else if (funct3==3'b100)
-            ALUctrl = 4'b0110; //LBU load byte unsigend
+            ALUctrl = 3'b000; //LBU load byte unsigend
         else if (funct3==3'b00)
-            ALUctrl = 4'b0100;  //SB store byte 
+            ALUctrl = 3'b000;  //SB store byte 
     else if (ALUop == 3'b001)
-        ALUctrl = 4'b0001; // SUBTRACT (BNE/BEQ)
+        ALUctrl = 3'b001; // SUBTRACT (BNE/BEQ)
     
     else if (ALUop == 3'b011)
-        ALUctrl = 4'b0111; //JAL
+        ALUctrl = 3'b111; //JAL
     
     else if (ALUop == 3'b010)
 
         if (funct3 == 3'b010)
-            ALUctrl = 4'b0101; // SET LESS THAN
+            ALUctrl = 3'b101; // SET LESS THAN
 
         else if (funct3 == 3'b110)
-            ALUctrl = 4'b0011; // OR
+            ALUctrl = 3'b011; // OR
 
         else if (funct3 == 3'b111)
-            ALUctrl = 4'b0010; // AND
+            ALUctrl = 3'b010; // AND
 
         else if (funct3 == 3'b000)
 
             if(funct7 == 1 && Op[5] == 1)
-                ALUctrl = 4'b0001; // SUBTRACT
+                ALUctrl = 3'b001; // SUBTRACT
                 
             else
-                ALUctrl = 4'b0000; // ADD
+                ALUctrl = 3'b000; // ADD
         else if (ALUop == 3'b111) 
-            ALUctrl = 4'b1111;  //LUI
+            ALUctrl = 3'b000;  //LUI
 end
 endmodule
