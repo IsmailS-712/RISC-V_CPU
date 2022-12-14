@@ -4,14 +4,14 @@ module control(
     output logic        RegWrite,
     output logic [2:0]  ALUctrl,
     output logic        ALUsrc,
-    output logic [2:0]  ImmSrc,
+    output logic [1:0]  ImmSrc,
     output logic        PCsrc,
     output logic        Resultsrc,
     output logic        Memwrite,
     output logic        reg_jump
 );
 
-logic [2:0]     ALUop;
+logic [1:0]     ALUop;
 logic [6:0]     Op;
 logic [14:12]   funct3;
 logic           funct7;
@@ -36,19 +36,16 @@ always_comb
 
 
 always_latch
-    if (Op == 7'b0000011) begin  // Opcode = lw or lbu
-        ALUop = 3'b000;
-        ImmSrc = 3'b000;
+    if (Op == 7'b0000011) begin  // Opcode = lw "Load Word"
+        ALUop = 2'b00;
         PCsrc = 0;
         Memwrite = 0;
         Resultsrc = 1;
         reg_jump = 0;
     end
-   
 
-    else if (Op == 7'b0100011) begin // Opcode = sw or sb
-        ALUop = 3'b000;
-        ImmSrc = 3'b001;
+    else if (Op == 7'b0100011) begin // Opcode = sw "Store Word"
+        ALUop = 2'b00;
         PCsrc = 0;
         Memwrite = 1;
         RegWrite = 0;
@@ -56,54 +53,55 @@ always_latch
     end
 
     else if (Op == 7'b0110011 | Op == 7'b0010011) begin // Opcode = R-type or li "load immediate"
-        ALUop = 3'b010;
+        ALUop = 2'b10;
+        ImmSrc = 2'b00;
         PCsrc = 0;
         Memwrite = 0;
         Resultsrc = 0;
         reg_jump = 0;
     end
 
-    else if (Op == 7'b1100011) begin // Opcode = BEQ
-        ALUop = 3'b001;
-        ImmSrc = 3'b010;
-        PCsrc = ~EQ;
+    else if (Op == 7'b0110111) begin // Opcode = LUI
+        ALUop = 2'b01;
+        ImmSrc = 2'b00;
+        PCsrc = 0;
         Memwrite = 0;
+        Resultsrc = 0;
         reg_jump = 0;
     end
 
-    else if (Op == 7'b1100011) begin // Opcode = BNE
-        ALUop = 3'b001;
-        ImmSrc = 3'b010;
+    else if ((Op == 7'b1100011) & (funct3 == 3'b000)) begin // Opcode = BEQ
+        ALUop = 2'b01;
+        ImmSrc = 2'b10;
         PCsrc = EQ;
         Memwrite = 0;
         reg_jump = 0;
     end
+
+    else if ((Op == 7'b1100011) & (funct3 == 3'b001)) begin // Opcode = BNE
+        ALUop = 2'b01;
+        ImmSrc = 2'b10;
+        PCsrc = ~EQ;
+        Memwrite = 0;
+        reg_jump = 0;
+    end
     else if (Op == 7'b1101111) begin // JAL
-        ALUop = 3'b011;
-        ImmSrc = 3'b011;
+        ALUop = 2'b11;
+        ImmSrc = 2'b11;
         PCsrc = 1;
         Memwrite = 0;
         RegWrite = 1;
         reg_jump = 0;
     end
     else if (Op == 7'b1100111) begin // JALR
-        ALUop = 3'b011;
+        ALUop = 2'b11;
         PCsrc = 1;
         Memwrite = 0;
         RegWrite = 1;
         reg_jump = 1;
     end
-    else if (Op == 7'b0110111) begin  // Opcode = LUI
-        ALUop = 3'b111;
-        ImmSrc = 3'b111;
-        PCsrc = 0;
-        Memwrite = 0;
-        Resultsrc = 1;
-        reg_jump = 0;
-        RegWrite = 1;
-    end
     else begin
-        ALUop = 3'b000;
+        ALUop = 2'b00;
         PCsrc = 0;
         reg_jump = 0;
     end
@@ -111,26 +109,22 @@ always_latch
 
 
 always_latch
-begin
-    if (ALUop == 3'b000)
-        if(funct3==3'b010)
-            ALUctrl = 3'b000; // ADD (LW/SW)
-        else if (funct3==3'b100)
-            ALUctrl = 3'b000; //LBU load byte unsigend
-        else if (funct3==3'b00)
-            ALUctrl = 3'b000;  //SB store byte 
-    else if (ALUop == 3'b001)
+
+    if (ALUop == 2'b00){
+        if (funct3 == 3'b000)
+            ALUctrl = 3'b101; // SB
+        else 
+            ALUctrl = 3'b000 // SW
+    }
+    else if (ALUop == 2'b01)
         ALUctrl = 3'b001; // SUBTRACT (BNE/BEQ)
     
-    else if (ALUop == 3'b011)
+    else if (ALUop == 2'b11)
         ALUctrl = 3'b111; //JAL
     
-    else if (ALUop == 3'b010)
+    else if (ALUop == 2'b10){
 
-        if (funct3 == 3'b010)
-            ALUctrl = 3'b101; // SET LESS THAN
-
-        else if (funct3 == 3'b110)
+        if (funct3 == 3'b110)
             ALUctrl = 3'b011; // OR
 
         else if (funct3 == 3'b111)
@@ -143,7 +137,6 @@ begin
                 
             else
                 ALUctrl = 3'b000; // ADD
-        else if (ALUop == 3'b111) 
-            ALUctrl = 3'b000;  //LUI
-end
+    }
+
 endmodule

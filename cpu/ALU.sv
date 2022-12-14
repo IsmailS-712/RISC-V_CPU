@@ -19,7 +19,7 @@ always_comb
     3'b001: ALUout = ALUop1 - ALUop2; //SUB
     3'b010: ALUout = ALUop1 & ALUop2; //AND
     3'b011: ALUout = ALUop1 | ALUop2; //OR
-    3'b101: ALUout = {{31{1'b0}},(ALUop1 < ALUop2)}; //SLT
+    3'b101: ALUout = {{31{1'b0}},(ALUop1 < ALUop2)}; // output lowest 8 bits
     3'b111: ALUout = incPC; // calculate (PC + 4) for JAL
     default: ALUout = 32'b0;
     endcase
