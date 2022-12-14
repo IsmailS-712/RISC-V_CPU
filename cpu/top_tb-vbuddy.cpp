@@ -23,9 +23,9 @@ int main(int argc, char **argv, char **env)
     vbdHeader("RISC-V");
 
     // initialize simulation input
-    vbdSetMode(0);
+    vbdSetMode(1);
     // run simulation for many clock cycles
-    for (i = 0; i < 500; i++)
+    for (i = 0; i < 5000; i++)
     {
 
         // dump variables into VCD file and toggle clock
@@ -38,7 +38,8 @@ int main(int argc, char **argv, char **env)
 
         top->trigger = not(vbdFlag());
         vbdBar(top->data_out);
-        vbdCycle(i);
+        if (i % 20 == 0)
+            vbdCycle(i);
 
         if (Verilated::gotFinish())
             exit(0);
