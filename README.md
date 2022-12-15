@@ -17,8 +17,9 @@ From **Lab 4**, our team split the work into the following parts:
 |sign_ext.sv| | | |x|
 |register.sv| |x| | |
 |ALU.sv| |x| | |
-|data_mem_mux.sv| |x| | |
+|data_mem.sv| |x| | |
 |top.sv| |x| | |
+|pipeline.sv| |x| | |
 |testing|+|+|x|+|
 
 *"x" Principal Contributer
