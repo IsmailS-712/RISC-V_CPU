@@ -13,7 +13,7 @@ always_ff @(posedge clk)
     if (WE == 1'b1)
         data_array[A] <= WD;
     end
-
+git 
 always_comb begin
     RD = data_array[A];
 end
