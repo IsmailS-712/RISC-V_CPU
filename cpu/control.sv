@@ -1,14 +1,14 @@
 module control(
-    input logic         EQ,
     input logic [31:0]  Instr,
     output logic        RegWrite,
     output logic [2:0]  ALUctrl,
     output logic        ALUsrc,
     output logic [2:0]  ImmSrc,
-    output logic        PCsrc,
     output logic        Resultsrc,
     output logic        Memwrite,
-    output logic        reg_jump
+    output logic        reg_jump,
+    output logic        jump,
+    output logic        branch
 );
 
 logic [1:0]     ALUop;
@@ -38,7 +38,8 @@ always_comb
 always_latch
     if (Op == 7'b0000011) begin  // Opcode = lw "Load Word"
         ALUop = 2'b00;
-        PCsrc = 0;
+        jump = 0;
+        branch = 0;
         Memwrite = 0;
         Resultsrc = 1;
         reg_jump = 0;
@@ -48,7 +49,8 @@ always_latch
     else if (Op == 7'b0100011) begin // Opcode = sw "Store Word"
         ALUop = 2'b00;
         ImmSrc = 3'b100;
-        PCsrc = 0;
+        jump = 0;
+        branch = 0;
         Memwrite = 1;
         RegWrite = 0;
         reg_jump = 0;
@@ -59,7 +61,8 @@ always_latch
     else if (Op == 7'b0110011 | Op == 7'b0010011) begin // Opcode = R-type or li "load immediate"
         ALUop = 2'b10;
         ImmSrc = 3'b000;
-        PCsrc = 0;
+        jump = 0;
+        branch = 0;
         Memwrite = 0;
         Resultsrc = 0;
         reg_jump = 0;
@@ -68,25 +71,18 @@ always_latch
     else if (Op == 7'b0110111) begin // Opcode = LUI
         ALUop = 2'b01;
         ImmSrc = 3'b000;
-        PCsrc = 0;
+        jump = 0;
+        branch = 0;
         Memwrite = 0;
         Resultsrc = 0;
         reg_jump = 0;
-    end
-
-    else if ((Op == 7'b1100011) & (funct3 == 3'b000)) begin // Opcode = BEQ
-        ALUop = 2'b01;
-        ImmSrc = 3'b010;
-        PCsrc = EQ;
-        Memwrite = 0;
-        reg_jump = 0;
-        Resultsrc = 0;
     end
 
     else if ((Op == 7'b1100011) & (funct3 == 3'b001)) begin // Opcode = BNE
         ALUop = 2'b01;
         ImmSrc = 3'b010;
-        PCsrc = ~EQ;
+        jump = 0;
+        branch = 1;
         Memwrite = 0;
         reg_jump = 0;
         Resultsrc = 0;
@@ -94,7 +90,7 @@ always_latch
     else if (Op == 7'b1101111) begin // JAL
         ALUop = 2'b11;
         ImmSrc = 3'b011;
-        PCsrc = 1;
+        jump = 1;
         Memwrite = 0;
         RegWrite = 1;
         reg_jump = 0;
@@ -102,7 +98,7 @@ always_latch
     end
     else if (Op == 7'b1100111) begin // JALR
         ALUop = 2'b11;
-        PCsrc = 1;
+        jump = 1;
         Memwrite = 0;
         RegWrite = 1;
         reg_jump = 1;
@@ -110,7 +106,7 @@ always_latch
     end
     else begin
         ALUop = 2'b00;
-        PCsrc = 0;
+        jump = 0;
         reg_jump = 0;
         Resultsrc = 0;
     end
