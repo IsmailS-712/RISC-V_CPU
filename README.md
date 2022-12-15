@@ -1,4 +1,3 @@
-Mihir has edited
-Edward was here
-Ismail was not here(!)
-Liu was here
+Group 7
+Members:
+Mihir, Edward, Ismai, Liu
