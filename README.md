@@ -21,6 +21,9 @@ From **Lab 4**, our team split the work into the following parts:
 |top.sv| |x| | |
 |testing|+|+|x|+|
 
+*"x" Principal Contributer
+"+" Helped*
+
 **Mihir Personal Statement**
 
 
