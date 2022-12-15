@@ -85,7 +85,7 @@ always_latch
 
     else if ((Op == 7'b1100011) & (funct3 == 3'b001)) begin // Opcode = BNE
         ALUop = 2'b01;
-        ImmSrc = 3'b000;
+        ImmSrc = 3'b010;
         PCsrc = ~EQ;
         Memwrite = 0;
         reg_jump = 0;
