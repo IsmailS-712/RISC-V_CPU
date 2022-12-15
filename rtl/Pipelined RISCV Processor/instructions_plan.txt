@@ -1,0 +1,32 @@
+li x10 count                #store constant count - from clktick.sv in Lab3
+li x11 start                #store address of start
+li x12 0                    #set x12 register to 0, used in count
+
+start:
+    addi x20 x0 0           #set x20 register to 0, x20 used for the vbdbar
+    bne x31 x0 start        #x31 set by vbdflag, if it is not 0 then keep looping start
+
+sequence:
+    addi x20 x0 1           #set x20 to 1
+    jal x1, count          #jump to count function and store next address in x1
+    addi x20 x0 11
+    jal x1, count
+    addi x20 x0 111
+    jal x1, count
+    addi x20 x0 1111
+    jal x1, count
+    addi x20 x0 11111
+    jal x1, count
+    addi x20 x0 111111
+    jal x1, count
+    addi x20 x0 1111111
+    jal x1, count
+    addi x20 x0 11111111
+    jal x1, count
+    jalr x0, 0(x11)         #jump back to start(x11)
+
+count:
+    addi x12 x12 1          #increment x12 by 1
+    bne x12 x10 count            #keep looping previous instruction until x12 = count
+    li x12 0                #set x12 to 0 again
+    jalr x0, 0(x1)          #jump back to address in x1
