@@ -110,11 +110,8 @@ always_latch
 
 always_latch
 
-    if ((ALUop == 2'b00) & (funct3 == 3'b000))
-        ALUctrl = 3'b101; // SB
-
-    else if ((ALUop == 2'b00) & (funct3 != 3'b000))
-        ALUctrl = 3'b000; // SW
+    if (ALUop == 2'b00)
+        ALUctrl = 3'b000; // SW/LW
 
     else if (ALUop == 2'b01)
         ALUctrl = 3'b001; // SUBTRACT (BNE/BEQ)
