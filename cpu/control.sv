@@ -4,7 +4,7 @@ module control(
     output logic        RegWrite,
     output logic [2:0]  ALUctrl,
     output logic        ALUsrc,
-    output logic [1:0]  ImmSrc,
+    output logic [2:0]  ImmSrc,
     output logic        PCsrc,
     output logic        Resultsrc,
     output logic        Memwrite,
@@ -42,20 +42,23 @@ always_latch
         Memwrite = 0;
         Resultsrc = 1;
         reg_jump = 0;
+        ImmSrc = 3'b000;
     end
 
     else if (Op == 7'b0100011) begin // Opcode = sw "Store Word"
         ALUop = 2'b00;
+        ImmSrc = 3'b100;
         PCsrc = 0;
         Memwrite = 1;
         RegWrite = 0;
         reg_jump = 0;
         Resultsrc = 0;
+        ALUsrc = 1;
     end
 
     else if (Op == 7'b0110011 | Op == 7'b0010011) begin // Opcode = R-type or li "load immediate"
         ALUop = 2'b10;
-        ImmSrc = 2'b00;
+        ImmSrc = 3'b000;
         PCsrc = 0;
         Memwrite = 0;
         Resultsrc = 0;
@@ -65,7 +68,7 @@ always_latch
 
     else if (Op == 7'b0110111) begin // Opcode = LUI
         ALUop = 2'b01;
-        ImmSrc = 2'b00;
+        ImmSrc = 3'b000;
         PCsrc = 0;
         Memwrite = 0;
         Resultsrc = 0;
@@ -74,7 +77,7 @@ always_latch
 
     else if ((Op == 7'b1100011) & (funct3 == 3'b000)) begin // Opcode = BEQ
         ALUop = 2'b01;
-        ImmSrc = 2'b10;
+        ImmSrc = 3'b010;
         PCsrc = EQ;
         Memwrite = 0;
         reg_jump = 0;
@@ -83,7 +86,7 @@ always_latch
 
     else if ((Op == 7'b1100011) & (funct3 == 3'b001)) begin // Opcode = BNE
         ALUop = 2'b01;
-        ImmSrc = 2'b10;
+        ImmSrc = 3'b00;
         PCsrc = ~EQ;
         Memwrite = 0;
         reg_jump = 0;
@@ -91,7 +94,7 @@ always_latch
     end
     else if (Op == 7'b1101111) begin // JAL
         ALUop = 2'b11;
-        ImmSrc = 2'b11;
+        ImmSrc = 3'b011;
         PCsrc = 1;
         Memwrite = 0;
         RegWrite = 1;
