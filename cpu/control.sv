@@ -119,24 +119,20 @@ always_latch
     else if (ALUop == 2'b11)
         ALUctrl = 3'b111; //JAL
     
-    else if (ALUop == 2'b10)
+    else if ((ALUop == 2'b10) & (funct3 == 3'b110))
+        ALUctrl = 3'b011; // OR
 
-        if (funct3 == 3'b110)
-            ALUctrl = 3'b011; // OR
+    else if ((ALUop == 2'b10) & (funct3 == 3'b111))
+        ALUctrl = 3'b010; // AND
 
-        else if (funct3 == 3'b010)
-            ALUctrl = 3'b101; //SLT
+    else if ((ALUop == 2'b10) & (funct3 == 3'b010))begin
+        ALUctrl = 3'b101; //SLT
 
-        else if (funct3 == 3'b111)
-            ALUctrl = 3'b010; // AND
-
-        else if (funct3 == 3'b)
-
-
-            if(funct7 == 1 && Op[5] == 1)
-                ALUctrl = 3'b001; // SUBTRACT
+        if(funct7 == 1 && Op[5] == 1)
+            ALUctrl = 3'b001; // SUBTRACT
                 
-            else
-                ALUctrl = 3'b000; // ADD
+        else
+            ALUctrl = 3'b000; // ADD
+    end
 
 endmodule
