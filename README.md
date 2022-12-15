@@ -20,6 +20,9 @@ From **Lab 4**, our team split the work into the following parts:
 |data_mem.sv| |x| | |
 |top.sv| |x| | |
 |pipeline.sv| |x| | |
+|machine code (f1 sequence)| |x| | |
+|testbench (f1 sequence)| |x| | |
+|testbench (reference program)|x|| | |
 |testing|+|+|x|+|
 
 *"x" Principal Contributer
