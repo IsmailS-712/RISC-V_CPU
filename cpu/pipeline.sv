@@ -135,6 +135,6 @@ always_ff @(posedge clk)begin
 end
 
 always_comb 
-    assign pPCsrc = (pjump | (pbranch & EQ));
+    assign pPCsrc = (pjump | (pbranch & ~EQ));
 
 endmodule
