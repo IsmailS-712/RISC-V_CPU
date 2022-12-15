@@ -11,14 +11,12 @@ logic [31:0] PC;
 logic [31:0] incPC;
 
 pc pc(
-    .ImmOp(ImmOp),
     .clk(clk),
     .rst(rst),
     .PCsrc(PCsrc),
     .PC_out(PC),
     .incPC(incPC),
-    .reg_addr(Regop1),
-    .reg_jump(reg_jump)
+    .branch_PC(branch_PC)
 );
 
 
@@ -89,7 +87,8 @@ register register(
 
 //ALU.sv outputs
 logic [31:0] ALUout;
-logic       EQ;
+logic        EQ;
+logic [31:0] branch_PC;
 
 ALU ALU(
     .ALUop1(Regop1),
@@ -99,7 +98,10 @@ ALU ALU(
     .ALUsrc(ALUsrc),
     .ALUout(ALUout),
     .incPC(incPC),
-    .EQ(EQ)
+    .EQ(EQ),
+    .reg_jump(reg_jump),
+    .PC(PC),
+    .branch_PC(branch_PC)
 );
 
 

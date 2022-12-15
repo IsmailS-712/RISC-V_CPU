@@ -1,4 +1,5 @@
 module ALU (
+    //ALU
     input logic [31:0]      ALUop1,
     input logic [31:0]      RegOp2,
     input logic [2:0]       ALUctrl,
@@ -6,9 +7,14 @@ module ALU (
     input logic [31:0]      ImmOp,
     input logic [31:0]      incPC,
     output logic [31:0]     ALUout,
-    output logic            EQ
+    output logic            EQ,
+    //branch PC
+    input logic             reg_jump,
+    input logic [31:0]      PC,
+    output logic [31:0]     branch_PC
 );
 
+//ALU
 logic [31:0]      ALUop2;
 
 assign ALUop2 = ALUsrc ? ImmOp : RegOp2;
@@ -25,4 +31,8 @@ always_comb
     endcase
 
 assign EQ = (ALUout == 32'b0);
+
+//branchPC
+assign branch_PC = reg_jump ? ALUop1 : PC + ImmOp;
+
 endmodule
