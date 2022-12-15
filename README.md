@@ -46,4 +46,5 @@ From **Lab 4**, our team split the work into the following parts:
 The machine hex dump for the pipelined F1 sequence is located in *instruction.hex*. The corresponding machine code is located in *instr-assembly-code.s*.
 The first line stores a number in register 10, which corresponds to the number of cycles we make the processor wait, so that the next light turns on after around 1 second. This should be changed according to the device. 
 
-
+**Module Layout**
+![Alt text](Module-layout.png?raw=true "layout")
