@@ -34,9 +34,8 @@ always_comb
         default: ALUsrc = 0;
     endcase
 
-
 always_latch
-    if (Op == 7'b0000011) begin  // Opcode = lw "Load Word"
+    if (Op == 7'b0000011) begin  // LW
         ALUop = 2'b00;
         PCsrc = 0;
         Memwrite = 0;
@@ -45,7 +44,7 @@ always_latch
         ImmSrc = 3'b000;
     end
 
-    else if (Op == 7'b0100011) begin // Opcode = sw "Store Word"
+    else if (Op == 7'b0100011) begin // SW
         ALUop = 2'b00;
         ImmSrc = 3'b100;
         PCsrc = 0;
@@ -56,7 +55,7 @@ always_latch
         ALUsrc = 1;
     end
 
-    else if (Op == 7'b0110011 | Op == 7'b0010011) begin // Opcode = R-type or li "load immediate"
+    else if (Op == 7'b0110011 | Op == 7'b0010011) begin // R-type or Immediate type instructions(LI, ADDI, SLL)
         ALUop = 2'b10;
         ImmSrc = 3'b000;
         PCsrc = 0;
@@ -65,7 +64,7 @@ always_latch
         reg_jump = 0;
     end
 
-    else if (Op == 7'b0110111) begin // Opcode = LUI
+    else if (Op == 7'b0110111) begin // LUI
         ALUop = 2'b01;
         ImmSrc = 3'b000;
         PCsrc = 0;
@@ -74,7 +73,7 @@ always_latch
         reg_jump = 0;
     end
 
-    else if ((Op == 7'b1100011) & (funct3 == 3'b000)) begin // Opcode = BEQ
+    else if ((Op == 7'b1100011) & (funct3 == 3'b000)) begin // BEQ
         ALUop = 2'b01;
         ImmSrc = 3'b010;
         PCsrc = EQ;
@@ -83,7 +82,7 @@ always_latch
         Resultsrc = 0;
     end
 
-    else if ((Op == 7'b1100011) & (funct3 == 3'b001)) begin // Opcode = BNE
+    else if ((Op == 7'b1100011) & (funct3 == 3'b001)) begin // BNE
         ALUop = 2'b01;
         ImmSrc = 3'b010;
         PCsrc = ~EQ;
@@ -91,6 +90,7 @@ always_latch
         reg_jump = 0;
         Resultsrc = 0;
     end
+
     else if (Op == 7'b1101111) begin // JAL
         ALUop = 2'b11;
         ImmSrc = 3'b011;
@@ -100,6 +100,7 @@ always_latch
         reg_jump = 0;
         Resultsrc = 0;
     end
+
     else if (Op == 7'b1100111) begin // JALR
         ALUop = 2'b11;
         PCsrc = 1;
@@ -108,14 +109,13 @@ always_latch
         reg_jump = 1;
         Resultsrc = 0;
     end
+
     else begin
         ALUop = 2'b00;
         PCsrc = 0;
         reg_jump = 0;
         Resultsrc = 0;
     end
-
-
 
 always_latch
     if (ALUop == 2'b00)
@@ -131,9 +131,12 @@ always_latch
 
         if (funct3 == 3'b110)
             ALUctrl = 3'b011; // OR
+
+        else if (funct3 == 3'b001)
+            ALUctrl = 3'b100; // SLL
         
         else if (funct3 == 3'b010)
-            ALUctrl = 3'b101; //SLT
+            ALUctrl = 3'b101; // SLT
 
         else if (funct3 == 3'b111)
             ALUctrl = 3'b010; // AND
