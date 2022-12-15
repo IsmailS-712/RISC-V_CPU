@@ -9,6 +9,7 @@ module top (
 //pc.sv outputs
 logic [31:0] PC;
 logic [31:0] incPC;
+logic [31:0] Result;
 
 pc pc(
     .clk(clk),
@@ -16,7 +17,11 @@ pc pc(
     .PCsrc(PCsrc),
     .PC_out(PC),
     .incPC(incPC),
-    .branch_PC(branch_PC)
+    .branch_PC(branch_PC),
+    .Resultsrc(Resultsrc),
+    .A(ALUout),
+    .RD(RD),
+    .Result(Result)
 );
 
 
@@ -105,16 +110,15 @@ ALU ALU(
 );
 
 
-//data_mem_mux.sv outputs
-logic [31:0] Result;
+//data_mem.sv outputs
+logic [31:0] RD;
 
-data_mem_mux data_mem(
+data_mem data_mem(
     .clk(clk),
     .A(ALUout),
     .WE(MemWrite),
     .WD(Regop2),
-    .Resultsrc(Resultsrc),
-    .Result(Result)
+    .RD(RD)
 );
 
 
