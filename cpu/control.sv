@@ -63,7 +63,6 @@ always_latch
         Memwrite = 0;
         Resultsrc = 0;
         reg_jump = 0;
-        Resultsrc = 0;
     end
 
     else if (Op == 7'b0110111) begin // Opcode = LUI
@@ -86,7 +85,7 @@ always_latch
 
     else if ((Op == 7'b1100011) & (funct3 == 3'b001)) begin // Opcode = BNE
         ALUop = 2'b01;
-        ImmSrc = 3'b00;
+        ImmSrc = 3'b000;
         PCsrc = ~EQ;
         Memwrite = 0;
         reg_jump = 0;
@@ -119,7 +118,6 @@ always_latch
 
 
 always_latch
-
     if (ALUop == 2'b00)
         ALUctrl = 3'b000; // SW/LW
 
@@ -129,20 +127,23 @@ always_latch
     else if (ALUop == 2'b11)
         ALUctrl = 3'b111; //JAL
     
-    else if ((ALUop == 2'b10) & (funct3 == 3'b110))
-        ALUctrl = 3'b011; // OR
+    else if (ALUop == 2'b10)
 
-    else if ((ALUop == 2'b10) & (funct3 == 3'b111))
-        ALUctrl = 3'b010; // AND
+        if (funct3 == 3'b110)
+            ALUctrl = 3'b011; // OR
+        
+        else if (funct3 == 3'b010)
+            ALUctrl = 3'b101; //SLT
 
-    else if ((ALUop == 2'b10) & (funct3 == 3'b010))begin
-        ALUctrl = 3'b101; //SLT
+        else if (funct3 == 3'b111)
+            ALUctrl = 3'b010; // AND
 
-        if(funct7 == 1 && Op[5] == 1)
-            ALUctrl = 3'b001; // SUBTRACT
+        else if (funct3 == 3'b000)
+
+            if(funct7 == 1 && Op[5] == 1)
+                ALUctrl = 3'b001; // SUBTRACT
                 
-        else
-            ALUctrl = 3'b000; // ADD
-    end
+            else
+                ALUctrl = 3'b000; // ADD
 
 endmodule

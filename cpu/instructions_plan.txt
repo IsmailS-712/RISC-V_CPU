@@ -30,32 +30,3 @@ count:
     bne x12 x10 count            #keep looping previous instruction until x12 = count
     li x12 0                #set x12 to 0 again
     jalr x0, 0(x1)          #jump back to address in x1
-
-
-
-
-02000513
-00000613
-00000a13
-fe0f9ee3
-00100a13
-040000ef
-00300a13
-038000ef
-00700a13
-030000ef
-00f00a13
-028000ef
-01f00a13
-020000ef
-03f00a13
-018000ef
-07f00a13
-010000ef
-0ff00a13
-008000ef
-00058067
-00160613
-fea61ee3
-00000613
-00008067
