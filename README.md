@@ -40,6 +40,7 @@ From **Lab 4**, our team split the work into the following parts:
 **Liu Personal Statement**
 
 **The F1 Sequence Program on RISC-V**
+
 "doit-vbuddy.sh" is the script to simulate the processor on the vBuddy and "doit.sh" is a similar script used to quickly view and debug the processor on gtkWave.
 
 The machine hex dump for the pipelined F1 sequence is located in instruction.hex. The corresponding machine code is located in instr-assembly-code.s.
