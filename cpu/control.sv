@@ -127,10 +127,14 @@ always_latch
         if (funct3 == 3'b110)
             ALUctrl = 3'b011; // OR
 
+        else if (funct3 == 3'b010)
+            ALUctrl = 3'b101; //SLT
+
         else if (funct3 == 3'b111)
             ALUctrl = 3'b010; // AND
 
-        else if (funct3 == 3'b000)
+        else if (funct3 == 3'b)
+
 
             if(funct7 == 1 && Op[5] == 1)
                 ALUctrl = 3'b001; // SUBTRACT
