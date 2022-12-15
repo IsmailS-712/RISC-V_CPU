@@ -50,6 +50,7 @@ always_latch
         Memwrite = 1;
         RegWrite = 0;
         reg_jump = 0;
+        Resultsrc = 0;
     end
 
     else if (Op == 7'b0110011 | Op == 7'b0010011) begin // Opcode = R-type or li "load immediate"
@@ -59,6 +60,7 @@ always_latch
         Memwrite = 0;
         Resultsrc = 0;
         reg_jump = 0;
+        Resultsrc = 0;
     end
 
     else if (Op == 7'b0110111) begin // Opcode = LUI
@@ -76,6 +78,7 @@ always_latch
         PCsrc = EQ;
         Memwrite = 0;
         reg_jump = 0;
+        Resultsrc = 0;
     end
 
     else if ((Op == 7'b1100011) & (funct3 == 3'b001)) begin // Opcode = BNE
@@ -84,6 +87,7 @@ always_latch
         PCsrc = ~EQ;
         Memwrite = 0;
         reg_jump = 0;
+        Resultsrc = 0;
     end
     else if (Op == 7'b1101111) begin // JAL
         ALUop = 2'b11;
@@ -92,6 +96,7 @@ always_latch
         Memwrite = 0;
         RegWrite = 1;
         reg_jump = 0;
+        Resultsrc = 0;
     end
     else if (Op == 7'b1100111) begin // JALR
         ALUop = 2'b11;
@@ -99,11 +104,13 @@ always_latch
         Memwrite = 0;
         RegWrite = 1;
         reg_jump = 1;
+        Resultsrc = 0;
     end
     else begin
         ALUop = 2'b00;
         PCsrc = 0;
         reg_jump = 0;
+        Resultsrc = 0;
     end
 
 
