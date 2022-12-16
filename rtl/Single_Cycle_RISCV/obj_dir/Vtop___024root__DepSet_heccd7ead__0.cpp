@@ -216,8 +216,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___sequent__TOP__1\n"); );
     // Body
-    vlSelf->top__DOT__PC = ((IData)(vlSelf->rst) ? 0U
-                             : vlSelf->top__DOT__pc__DOT__next_PC);
+    vlSelf->top__DOT__PC = ((IData)(vlSelf->rst) ? 0xbfc00000U
+                             : ((IData)(0xbfc00000U) 
+                                + vlSelf->top__DOT__pc__DOT__next_PC));
     vlSelf->top__DOT__instr = vlSelf->top__DOT__instr_mem__DOT__rom_array
         [(0xfffU & (vlSelf->top__DOT__PC >> 2U))];
     vlSelf->top__DOT__RegWrite = (0U == (0x40U & vlSelf->top__DOT__instr));
