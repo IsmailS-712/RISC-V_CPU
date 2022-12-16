@@ -30,17 +30,21 @@ From **Lab 4**, our team split the work into the following parts:
 
 **Mihir Personal Statement**
 
-Disclaimer: struggled to push my files from VSC to the repository, as a result most of my files have been moved by my team members from previous folders that I have pushed to. Originally my pushes on git were under the name root and only the most recent pushes have been made using my git username. 
+Disclaimer: 
+I struggled to push my files from VSC to the repository, as a result most of my files have been moved by my team members from previous folders that I have pushed to. Originally my pushes on git were under the name root and only the most recent pushes have been made using my git username. 
 
 Contribution: 
+
 On this project I was the main contributor for the Program Counter and the test bench for the reference program. Furthermore, I contributed towards the instruction memory module, the machine code for the F1 sequence and helped with the testing as well. 
 
 Reflection about what I have learnt in this project:
+
 For the previous lab, I was tasked with working on the PC section. By further developing my work from the previous lab, I got a full grasp on how the byte addressing worked, and was confident to make the register that stores the address of the instruction that the processor is currently executing as well as well as incrementing the program counter each time an instruction is executed, so that the processor knows which instruction to execute next. The thing I found most interesting was adding an extra module to be able to use specific jump instructions allowing for looping and branching. 
 By additionally working on the machine code for the F1 sequence and the instruction memory, I was able was able to help test the machine code using GTKWave. We were able to see that on the rising edge the PC was incrementing and that when fetching data from the instruction memory, the right word address had been used and the correct value was shown on the simulation. 
 I was initially a bit unsure in my competence to use System Verilog. However throughout the last few labs and especially the group projects and creating the testbench for the reference code to provide stimulus to the design and verify the output of the design really helped me to better understand and improve my skills. I have really been able to understand the principles of digital design especially including the implementation of finite state machines through this hardware description language. I have also improved on my communication and problem solving skills through the labs, making teams calls and WhatsApp calls to check on our progress. 
 
 Improvements for next time: 
+
 Some things to remember for next time would be to try and have more communication from the very beginning. To try and reduce any redundancy in the team if we have more meetings to discuss which components have been completed and then help others with their modules so the team can progress quicker. It would also be more beneficial if there is more than one person working on the debugging and direct communication between people who completed their respective parts and the person working on the top module as this will make the process much smoother 
 
 ------------------------------------
