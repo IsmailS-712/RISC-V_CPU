@@ -23,7 +23,7 @@ From **Lab 4**, our team split the work into the following parts:
 |machine code (f1 sequence)|+|x|x| |
 |testbench (f1 sequence)| |x| | |
 |testbench (reference program)|x|| | |
-|testing|+|+|x|+|
+|testing|+|x|x|+|
 
 *"x" Principal Contributer
 "+" Helped*
@@ -32,7 +32,7 @@ From **Lab 4**, our team split the work into the following parts:
 
 
 **Edward Personal Statement**
-Main contributor towards: ALU, data_mux, register, [top module](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/5138fdeda56a531efb23420bf7b91e06b50a0719), [pipeline](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/b953bd7cd55512057a190aed103de9051f8dd0a0), [machine codes](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/4eb35946432e881b834bbf67edd5846d753f939f) and [testbenchs](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/34fa499e47b4a5b2ab4fe749d0be4c87122c3cae) for F1 sequence. Also contributed to parts of control - [JAL/JALR](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/af91b039d0c4666dc2f4d499690698ce58787ada) instructions and testing after combining all seperate modules into top. During this project I learnt a lot about how to debug the processor using GtkWave, looking for incorrect signals and finding the source. I also learnt a lot about how addressing worked in a processor. Some mistakes along the way which I would do better next time include misinterpretting how SW and LW work and also syntax errors due to not checking my code. 
+Main contributor towards: ALU, data_mux, register, [top module](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/5138fdeda56a531efb23420bf7b91e06b50a0719), [pipeline](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/b953bd7cd55512057a190aed103de9051f8dd0a0), [machine codes](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/4eb35946432e881b834bbf67edd5846d753f939f) and [testbenchs](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/34fa499e47b4a5b2ab4fe749d0be4c87122c3cae) for F1 sequence. Also contributed to parts of control - [JAL](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/af91b039d0c4666dc2f4d499690698ce58787ada)/[JALR](https://github.com/EIE2-IAC-Labs/iac-riscv-cw-7/commit/11781d5446aec7a025807a08ffaf6db41b74c149) instructions and testing after combining all seperate modules into top. During this project I learnt a lot about how to debug the processor using GtkWave, looking for incorrect signals and finding the source. I also learnt a lot about how addressing worked in a processor. Some mistakes along the way which I would do better next time include misinterpretting how SW and LW work and also syntax errors due to not checking my code. 
 
 **Ismail Personal Statement**
 
