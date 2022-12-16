@@ -30,7 +30,7 @@ From **Lab 4**, our team split the work into the following parts:
 
 **Mihir Personal Statement**
 
-Disclaimer: struggled to push my files from VSC to the repository, as a result most of my files have been moved by my team members from previous folders that I have pushed to. Originally my pushes on git were under the name root and only the mist recent pushes have been made using my git username as I pushed on git online. 
+Disclaimer: struggled to push my files from VSC to the repository, as a result most of my files have been moved by my team members from previous folders that I have pushed to. Originally my pushes on git were under the name root and only the most recent pushes have been made using my git username. 
 
 Contribution: 
 On this project I was the main contributor for the Program Counter and the test bench for the reference program. Furthermore, I contributed towards the instruction memory module, the machine code for the F1 sequence and helped with the testing as well. 
