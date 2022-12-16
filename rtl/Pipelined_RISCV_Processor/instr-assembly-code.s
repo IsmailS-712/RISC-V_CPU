@@ -8,6 +8,9 @@ start:
     nop
 
 sequence:
+    jal x1, count
+    nop
+    nop
     li x20, 1
     jal x1, count
     nop
