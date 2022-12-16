@@ -1,14 +1,12 @@
-***Group 7***
-Members:
-Mihir, Edward, Ismail, Liu
-
-
+***Group 7:*** **Mihir, Edward, Ismail, Liu**
+---------------------------------------------------------------------------------------------------------------
 From **Lab 4**, our team split the work into the following parts:
 1) Program Counter and related adders. **[MIHIR]**
 2) The Register File, ALU and the related MUX. **[EDWARD]**
 3) The Control Unit, the Sign-extension Unit and the instruction memory. **[LIU]**
 4) The testbench and verification of the design working via gtkWave and Vbuddy (where appropriate). **[ISMAIL]**
 
+**Group Contribution Table**
 |module|Mihir|Edward|Ismail|Liu|
 |:-----|:---:|:----:|:----:|:-:|
 |pc.sv|x| | | |
@@ -22,15 +20,17 @@ From **Lab 4**, our team split the work into the following parts:
 |pipeline.sv| |x| | |
 |machine code (f1 sequence)|+|x|x| |
 |testbench (f1 sequence)| |x| | |
-|testbench (reference program)|x|| | |
+|testbench (reference program)|x| | | |
 |testing|+|x|x|+|
 
 *"x" Principal Contributer
 "+" Helped*
 
+---------------------------------------
 
 **Mihir Personal Statement**
 
+------------------------------------
 
 **Edward Personal Statement**
 
@@ -44,6 +44,7 @@ Pipelining was the last part and I chose to make it a single block instead of mu
 
 During this project I learnt a lot about how to debug the processor using GtkWave, looking for incorrect signals and finding the source. I also learnt a lot about system verilog language and syntax and I felt the number of syntax errors gradually decrease over time. Some mistakes along the way which I would do better next time include misinterpretting how SW and LW work and also logical errors due to not checking my code. 
 
+------------------------------------
 
 **Ismail Personal Statement**
  - *Disclaimer: It's gonna take 6mins to read this*
@@ -60,6 +61,7 @@ To conclude, I have learnt more than I ever thought I would during this project 
 
 In the future, I will try my best to stay on target and do labs on time, so I don’t get time crunched like this time and have to put all my other modules on hold. I will also try to physically attend the labs, because I’ve found that I do not like to ask for help sometimes, but I need to force myself for my own benefit and for the team. My methodology was using trial and error in every part of this project, and whilst it’s time consuming, it is no doubt a great asset to my learning.
 
+------------------------------------
 
 **Liu Personal Statement**
 
@@ -71,6 +73,7 @@ About sign-extension:
 In this block, I learnt that in order to get a right instruction with same bit length, a signal-extension block is needed. Otherwise, the signal can’t be read by the Instruction memory.  
 There are some mistakes and things that can be improved in the first time I wrote this block. At first, I used 2bit ImmSrc which comes from lab4. However, I found that 2bit is not enough. It has LW, LUI, BEQ and BNE, JAL, SW, 5 different instructions, so we need at least 3bit ImmSrc to represent all the instructions. After I changed it to 3bit, I discussed it with my groupmates. But during the discussion, we came to the wrong conclusion that instructions related to store operation would not come through sign-extension. At that version, we just let the Immsrc back to 2bit. Luckily, we finally found that the first version of RISC-V sign-extension is right, which means that we need 3bit Immsrc and SW will go through sign-extension block. 
 
+------------------------------------
 
 **The F1 Sequence Program on RISC-V**
 
