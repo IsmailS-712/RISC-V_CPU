@@ -39,7 +39,7 @@ int main(int argc, char **argv, char **env)
         top->trigger = not(vbdFlag());
         vbdBar(top->data_out);
         if (i % 20 == 0)
-            vbdCycle(i);
+            vbdCycle(50);
 
         if (Verilated::gotFinish())
             exit(0);
