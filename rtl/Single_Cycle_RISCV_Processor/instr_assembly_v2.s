@@ -10,6 +10,7 @@ sequence:
     jal x1, count
     slli x20, x20, 1
     bne x20, x13, sequence
+    jal x1, count
     jalr x0, x0
 
 count:

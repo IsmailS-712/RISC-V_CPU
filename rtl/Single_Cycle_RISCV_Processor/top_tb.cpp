@@ -22,7 +22,7 @@ int main(int argc, char **argv, char **env)
     top->trigger = 1;
 
     // run simulation for many clock cycles
-    for (i = 0; i < 300; i++)
+    for (i = 0; i < 500; i++)
     {
 
         // dump variables into VCD file and toggle clock
