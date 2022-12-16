@@ -30,7 +30,12 @@ From **Lab 4**, our team split the work into the following parts:
 
 **Mihir Personal Statement**
 
-Testing
+Contribution: 
+On this project I was the main contributor for the Program Counter and the test bench for the reference program. Furthermore, I contributed towards the instruction memory module, the machine code for the F1 sequence and helped with the testing as well. 
+
+Reflection about what I have learnt in this project:
+For the previous lab, I was tasked with working on the PC section and got a full grasp on how the byte addressing worked, however at this point I was still a bit hesitant in my capabilities to use System Verilog. By further developing my work from the previous lab I was confident to make the register that stores the address of the instruction that the processor is currently executing as well as well as incrementing the program counter each time an instruction is executed, so that the processor knows which instruction to execute next. The thing I found most interesting was adding an extra module to be able to use specific jump instructions allowing for looping and branching. ![image](https://user-images.githubusercontent.com/116349028/208188618-1a592953-398c-4c12-8416-073c1e616ae9.png)
+
 
 ------------------------------------
 
