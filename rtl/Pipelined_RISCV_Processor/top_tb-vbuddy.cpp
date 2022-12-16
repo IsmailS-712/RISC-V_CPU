@@ -24,6 +24,8 @@ int main(int argc, char **argv, char **env)
 
     // initialize simulation input
     vbdSetMode(1);
+    int count = 0;
+    top->trigger = 1;
     // run simulation for many clock cycles
     for (i = 0; i < 5000; i++)
     {
@@ -36,10 +38,17 @@ int main(int argc, char **argv, char **env)
             top->eval();
         }
 
-        top->trigger = not(vbdFlag());
+        if (vbdFlag() and (count > 10))
+        {
+            top->trigger = 0;
+            count = 0;
+        }
+        if (count == 10)
+            top->trigger = 1;
+
         vbdBar(top->data_out);
-        if (i % 20 == 0)
-            vbdCycle(50);
+        vbdCycle(count);
+        count++;
 
         if (Verilated::gotFinish())
             exit(0);
