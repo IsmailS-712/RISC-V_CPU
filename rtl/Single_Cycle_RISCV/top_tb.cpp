@@ -19,7 +19,7 @@ int main(int argc, char **argv, char **env)
     // initialize simulation input
     top->rst = 1;
     top->clk = 1;
-    top->trigger = 1;
+    top->trigger = 0;
 
     // run simulation for many clock cycles
     for (i = 0; i < 500; i++)
@@ -33,7 +33,6 @@ int main(int argc, char **argv, char **env)
             top->eval();
         }
         top->rst = 0;
-        top->trigger = (i==24);
 
         // change input stimuli
         //==Step 1: Loadable Counter==
