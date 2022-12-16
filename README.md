@@ -12,15 +12,15 @@ From **Lab 4**, our team split the work into the following parts:
 |module|Mihir|Edward|Ismail|Liu|
 |:-----|:---:|:----:|:----:|:-:|
 |pc.sv|x| | | |
-|instr_mem.sv| | |x| |
-|control.sv| | | |x|
-|sign_ext.sv| | | |x|
+|instr_mem.sv|+| |x| |
+|control.sv| | |+|x|
+|sign_ext.sv| | |+|x|
 |register.sv| |x| | |
 |ALU.sv| |x| | |
 |data_mem.sv| |x| | |
 |top.sv| |x| | |
 |pipeline.sv| |x| | |
-|machine code (f1 sequence)| |x| | |
+|machine code (f1 sequence)|+|x|x| |
 |testbench (f1 sequence)| |x| | |
 |testbench (reference program)|x|| | |
 |testing|+|+|x|+|
